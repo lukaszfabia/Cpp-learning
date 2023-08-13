@@ -38,7 +38,7 @@ int main()
     res = (double)(finish - start) / CLOCKS_PER_SEC;
     cout << "Time with pointer: " << res << endl;
 
-    delete[] pointer;
+    delete[] arr;
 
     return 0;
 }
