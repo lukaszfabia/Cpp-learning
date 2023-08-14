@@ -1,1 +1,1 @@
-## Update my knowladge about C++
+## Updating my knowladge about C++
