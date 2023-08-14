@@ -95,7 +95,7 @@ bool add(int *arr, int element){
 }
 
 bool add(int *arr, int element, int index){
-    if (index>len){
+    if (index>len || index<0){
         return false;
     }
     else{
@@ -109,10 +109,4 @@ bool add(int *arr, int element, int index){
         *end = element;
         return true;
     }
-
-
-
-
-
-
 }
