@@ -13,6 +13,7 @@ private:
     Course* courses[10];
 
 public:
+    Student();
     Student(string firstName, string lastName, int age, int studentID);
     ~Student();
 
@@ -26,7 +27,14 @@ public:
     int getStudentID();
     int getAge();
 
+
     void print();
+    void addCourse(Course* course);
+    void removeCourse(Course* course);
+    void removeCourse(string name);
+    void printCourses();
+
+    Course** getCourses();
 };
 
 #endif
