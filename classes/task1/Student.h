@@ -2,6 +2,7 @@
 #define STUDENT_H
 
 #include <string>
+#include "Course.h"
 using namespace std;
 class Student {
 private:
@@ -9,6 +10,7 @@ private:
     string lastName;
     int studentID;
     int age;
+    Course* courses[10];
 
 public:
     Student(string firstName, string lastName, int age, int studentID);
