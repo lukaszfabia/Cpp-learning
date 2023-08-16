@@ -29,10 +29,12 @@ public:
 
 
     void print();
-    void addCourse(Course* course);
-    void removeCourse(Course* course);
-    void removeCourse(string name);
+    bool addCourse(Course* course);
+    bool removeCourse(Course* course);
+    bool removeCourse(string name);
     void printCourses();
+
+    bool isPassing();
 
     Course** getCourses();
 };

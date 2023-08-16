@@ -9,6 +9,10 @@ Student::Student()
     this->lastName = "";
     this->age = 0;
     this->studentID = 0;
+
+    for (int i=0; i<10; i++){
+        courses[i] = nullptr;
+    }
 }
 
 Student::Student(string firstName, string lastName, int age, int studentID)
@@ -17,6 +21,10 @@ Student::Student(string firstName, string lastName, int age, int studentID)
     this->lastName = lastName;
     this->age = age;
     this->studentID = studentID;
+
+    for (int i=0; i<10; i++){
+        courses[i] = nullptr;
+    }
 }
 
 Student::~Student()
@@ -80,40 +88,43 @@ void Student::print()
     cout << "Student ID: " << studentID << endl;
 }
 
-void Student::addCourse(Course *course)
+bool Student::addCourse(Course *course)
 {
     for (int i = 0; i < 10; i++)
     {
         if (courses[i] == nullptr)
         {
             courses[i] = course;
-            break;
+            return true;
         }
     }
+    return false;
 }
 
-void Student::removeCourse(string name)
+bool Student::removeCourse(string name)
 {
     for (int i = 0; i < 10; i++)
     {
         if (courses[i] != nullptr && courses[i]->getName() == name)
         {
             courses[i] = nullptr;
-            break;
+            return true;
         }
     }
+    return false;
 }
 
-void Student::removeCourse(Course *course)
+bool Student::removeCourse(Course *course)
 {
     for (int i = 0; i < 10; i++)
     {
         if (courses[i] == course)
         {
             courses[i] = nullptr;
-            break;
+            return true;
         }
     }
+    return false;
 }
 
 void Student::printCourses()
@@ -122,7 +133,21 @@ void Student::printCourses()
     {
         if (courses[i] != nullptr)
         {
-            cout << courses[i]->getName() << endl;
+            cout<<courses[i]->getName()<<endl;
         }
     }
+}
+
+bool Student::isPassing(){
+    for (int i = 0; i < 10; i++)
+    {
+        if (courses[i] != nullptr)
+        {
+            if (courses[i]->getGrade() < 3.0)
+            {
+                return false;
+            }
+        }
+    }
+    return true;
 }
