@@ -29,6 +29,7 @@ int main()
 
     delete[] arr;
 
+    system("pause");
     return 0;
 }
 

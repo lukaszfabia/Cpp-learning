@@ -5,13 +5,14 @@ using namespace std;
 
 void sort(int *x, int *y, int *z); // send originals to function
 
-int main(int argc, char const *argv[])
+int main()
 {
     int x, y, z;
     cin >> x >> y >> z;
     sort(&x, &y, &z); // giving adresses to variables 
     cout << x << " " << y << " " << z << endl;
 
+    system("pause");
     return 0;
 }
 

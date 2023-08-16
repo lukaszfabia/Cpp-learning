@@ -39,6 +39,7 @@ int main()
     cout << "Time with pointer: " << res << endl;
 
     delete[] arr;
-
+    
+    system("pause");
     return 0;
 }
