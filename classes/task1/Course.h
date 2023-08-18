@@ -22,6 +22,6 @@ class Course
         void setName(string name);
         void setEcts(int ects);
         void setGrade(double grade);
-        void print();
+        void printCourses();
 };
 #endif

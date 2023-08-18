@@ -41,7 +41,7 @@ void Course::setGrade(double grade){
     this->grade = grade;
 }
 
-void Course::print(){
+void Course::printCourses(){
     cout << "Course: " << name << " ECTS: " << ects << " Grade: " << grade << endl;
 }
 
