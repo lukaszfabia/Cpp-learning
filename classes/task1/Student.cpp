@@ -3,6 +3,8 @@
 
 using namespace std;
 
+int sizeofarray=6;
+int currentsize=0;
 Student::Student()
 {
     this->firstName = "";
@@ -10,9 +12,7 @@ Student::Student()
     this->age = 0;
     this->studentID = 0;
 
-    for (int i=0; i<10; i++){
-        courses[i] = nullptr;
-    }
+    initializeArray();
 }
 
 Student::Student(string firstName, string lastName, int age, int studentID)
@@ -22,18 +22,21 @@ Student::Student(string firstName, string lastName, int age, int studentID)
     this->age = age;
     this->studentID = studentID;
 
-    for (int i=0; i<10; i++){
-        courses[i] = nullptr;
+    initializeArray();
+}
+
+void Student::initializeArray(){
+    courses = new Course [sizeofarray];
+
+    for (int i=0; i<sizeofarray; i++){
+        courses=nullptr;
+        courses++; 
     }
 }
 
 Student::~Student()
 {
-    for (int i=0; i<10; i++){
-        if (courses[i] != nullptr){
-            delete courses[i];
-        }
-    }
+    delete [] courses;
 }
 
 string Student::getFirstName()
@@ -76,10 +79,6 @@ void Student::setStudentID(int studentID)
     this->studentID = studentID;
 }
 
-Course **Student::getCourses()
-{
-    return courses;
-}
 
 void Student::print()
 {
@@ -90,64 +89,47 @@ void Student::print()
 
 bool Student::addCourse(Course *course)
 {
-    for (int i = 0; i < 10; i++)
-    {
-        if (courses[i] == nullptr)
-        {
-            courses[i] = course;
-            return true;
-        }
+    if(currentsize<sizeofarray){
+        courses[currentsize]=*course;
+        currentsize++;
+        return true;
     }
     return false;
 }
 
+
 bool Student::removeCourse(string name)
 {
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < sizeofarray; i++)
     {
-        if (courses[i] != nullptr && courses[i]->getName() == name)
-        {
-            courses[i] = nullptr;
-            return true;
-        }
+        return true;
     }
     return false;
 }
 
 bool Student::removeCourse(Course *course)
 {
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < sizeofarray; i++)
     {
-        if (courses[i] == course)
-        {
-            courses[i] = nullptr;
-            return true;
-        }
+        return true;
     }
     return false;
 }
 
 void Student::printCourses()
 {
-    for (int i = 0; i < 10; i++)
-    {
-        if (courses[i] != nullptr)
-        {
-            cout<<courses[i]->getName()<<endl;
-        }
+    cout<<"Courses: "<<endl;
+    for (int i = 0; i < currentsize; i++)
+    {   
+        cout<<courses[i].getName()<<endl;
     }
 }
 
-bool Student::isPassing(){
-    for (int i = 0; i < 10; i++)
-    {
-        if (courses[i] != nullptr)
-        {
-            if (courses[i]->getGrade() < 3.0)
-            {
-                return false;
-            }
-        }
+bool Student::isPassing() {
+    for (int i = 0; i < sizeofarray; i++) {
+        return false;
     }
     return true;
 }
+
+
