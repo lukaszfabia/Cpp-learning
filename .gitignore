@@ -31,12 +31,13 @@
 *.out
 *.app
 
+# json files
+*.json
+
 main.dSYM/
 
 main
 
 output/
-
-.vscode/
 
 build/
