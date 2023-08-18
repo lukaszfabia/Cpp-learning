@@ -34,3 +34,9 @@
 main.dSYM/
 
 main
+
+output/
+
+.vscode/
+
+build/

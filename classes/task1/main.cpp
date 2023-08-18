@@ -13,8 +13,9 @@ int main() {
     cout<<s1.addCourse(c1)<<endl;
     cout<<s1.addCourse(c2)<<endl;
     cout<<s1.addCourse(c3)<<endl;
-    cout<<"test"<<endl;
     s1.printCourses();
-
+    cout<<s1.isPassing()<<endl;
+    s1.removeCourse("C++");
+    s1.printCourses();
     return 0;
 }

@@ -4,17 +4,17 @@
 #include <string>
 #include "Course.h"
 using namespace std;
-
 class Student {
 private:
     string firstName;
     string lastName;
     int studentID;
     int age;
-    Course *courses;
+    static const int sizeOfCourses = 10;
+    Course* courses[sizeOfCourses];
 
-
-    void initializeArray();
+    void initializeCourses();
+    int getLength();
 
 public:
     Student();
@@ -39,6 +39,8 @@ public:
     void printCourses();
 
     bool isPassing();
+
+    Course** getCourses();
 };
 
 #endif
