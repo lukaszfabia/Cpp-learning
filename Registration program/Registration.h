@@ -17,7 +17,8 @@ private:
     string email;
     string phoneNumber;
     
-    string authorize();
+    //string authorize();
+    void save();
 
 public:
     Registration();
@@ -30,6 +31,8 @@ public:
     void setPassword(string password);
     void setEmail(string email);
     void setPhoneNumber(string phoneNumber);
+
+    string authorize();
 };
 
 #endif

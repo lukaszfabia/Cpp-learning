@@ -28,6 +28,9 @@ public:
     bool isPasswordValid();
     bool isEmailValid();
     bool isPhoneNumberValid();
+    string getUsername();
+    string getEmail();
+    string getPhoneNumber();
 };
 
 #endif

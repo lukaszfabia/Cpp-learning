@@ -18,7 +18,7 @@ Validator::Validator(string username, string password, string email, string phon
 {
     this->email = email;
     this->password = password;
-    this->phoneNumber = phoneNumber;
+    this->phoneNumber = phoneNumber.replace(phoneNumber.find(""), 1, "");
     this->username = username;
 }
 
@@ -118,3 +118,19 @@ bool Validator::isPhoneNumberValid()
 {
     return !(hasOnlyNumbers(phoneNumber) && hasProperLength(phoneNumber, 8, 10));
 }
+
+string Validator::getUsername()
+{
+    return this->username;
+}
+
+string Validator::getEmail()
+{
+    return this->email;
+}   
+
+string Validator::getPhoneNumber()
+{
+    return this->phoneNumber;
+}
+

@@ -1,4 +1,6 @@
 #include <string>
+#include <iostream>
+#include <fstream>
 #include "Registration.h"
 #include "Validator.h"
 
@@ -28,11 +30,32 @@ Registration::~Registration()
 string Registration::authorize()
 {
     bool isAllDataValid = validator.isUsernameValid() &&
-        validator.isPasswordValid() &&
-        validator.isEmailValid() &&
-        validator.isPhoneNumberValid();
+                          validator.isPasswordValid() &&
+                          validator.isEmailValid() &&
+                          validator.isPhoneNumberValid();
 
-    return isAllDataValid ? "Registration successful!" : "Registration failed!";
+    if (isAllDataValid)
+    {
+        save();
+    }
+
+    //return isAllDataValid ? "Registration successful!" : "Registration failed!";
+    return to_string(validator.isPasswordValid());
+}
+
+void Registration::save()
+{
+    ofstream File;
+    File.open("data.txt", ios::app);
+    if (File.is_open()){
+        File << this->username << " ";
+        File << this->password << " ";
+        File << this->email << " ";
+        File << this->phoneNumber << endl;
+        File.close();
+    }else{
+        cout << "Unable to open file";
+    }
 }
 
 void Registration::form()
@@ -46,7 +69,7 @@ void Registration::form()
     cout << "Phone number: ";
     cin >> this->phoneNumber;
 
-    cout<<authorize()<<endl;
+    cout << authorize() << endl;
 }
 
 void Registration::setUsername(string username)
