@@ -1,21 +1,7 @@
-#include <string>
-#include <iostream>
-#include <fstream>
 #include "Registration.h"
-#include "Validator.h"
-#include "Data.h"
+#include <string>
 
 using namespace std;
-
-Registration::Registration()
-{
-    this->username = "";
-    this->password = "";
-    this->email = "";
-    this->phoneNumber = "";
-    this->validator = Validator();
-    this->data = Data(validator);
-}
 
 Registration::Registration(string username, string password, string email, string phoneNumber)
 {
@@ -24,71 +10,33 @@ Registration::Registration(string username, string password, string email, strin
     this->email = email;
     this->phoneNumber = phoneNumber;
     this->validator = Validator(username, password, email, phoneNumber);
-    this->data = Data(validator);
 }
 
 Registration::~Registration()
 {
 }
 
-string Registration::authorize()
+string Registration::getUsername()
 {
-    if (data.addData(validator))
-    {
-        save();
-        return "Registration successful";
-    }
-    else
-    {
-        return "Registration failed";
-    }
+    return this->username;
 }
 
-void Registration::save()
+string Registration::getEmail()
 {
-    ofstream File;
-    File.open("data.txt", ios::app);
-    if (File.is_open()){
-        File << this->username << " ";
-        File << this->password << " ";
-        File << this->email << " ";
-        File << this->phoneNumber << endl;
-        File.close();
-    }else{
-        cout << "Unable to open file";
-    }
+    return this->email;
 }
 
-void Registration::form()
+string Registration::getPhoneNumber()
 {
-    cout << "Username: ";
-    cin >> this->username;
-    cout << "Password: ";
-    cin >> this->password;
-    cout << "Email: ";
-    cin >> this->email;
-    cout << "Phone number: ";
-    cin >> this->phoneNumber;
-
-    cout << authorize() << endl;
+    return this->phoneNumber;
 }
 
-void Registration::setUsername(string username)
+string Registration::getPassword()
 {
-    this->username = username;
+    return this->password;
 }
 
-void Registration::setPassword(string password)
+bool Registration::authorize()
 {
-    this->password = password;
-}
-
-void Registration::setEmail(string email)
-{
-    this->email = email;
-}
-
-void Registration::setPhoneNumber(string phoneNumber)
-{
-    this->phoneNumber = phoneNumber;
+    return !validator.isValid();
 }

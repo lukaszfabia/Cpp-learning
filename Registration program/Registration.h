@@ -1,42 +1,34 @@
 #ifndef REGISTRATION_H
 #define REGISTRATION_H
 
-
 #include <string>
 #include "Validator.h"
-#include "Validator.cpp"
-#include "Data.h"
-#include "Data.cpp"
+#include "Validator.cpp" 
 
 using namespace std;
 
 class Registration
 {
 private:
-    Validator validator;
     string username;
     string password;
     string email;
     string phoneNumber;
-    
-    //string authorize();
-    void save();
 
-public:
-    Data data;
-    Registration();
+protected:
+    Validator validator;
+
+public: 
     Registration(string username, string password, string email, string phoneNumber);
     ~Registration();
 
-    void form();
+    string getUsername();
+    string getEmail();
+    string getPhoneNumber();
+    string getPassword();
 
-    void setUsername(string username);
-    void setPassword(string password);
-    void setEmail(string email);
-    void setPhoneNumber(string phoneNumber);
+    bool authorize();
 
-    string authorize();
 };
 
 #endif
-    

@@ -20,14 +20,16 @@ private:
     bool hasOnlyNumbers(string data);
     bool isProperEmail(string data);
 
-public:
-    Validator();
-    Validator(string username, string password, string email, string phoneNumber);
-    ~Validator();
     bool isUsernameValid();
     bool isPasswordValid();
     bool isEmailValid();
     bool isPhoneNumberValid();
+
+public:
+    Validator();
+    Validator(string username, string password, string email, string phoneNumber);
+    ~Validator();
+    bool isValid();
     string getUsername();
     string getEmail();
     string getPhoneNumber();

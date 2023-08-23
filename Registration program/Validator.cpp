@@ -1,7 +1,6 @@
 #include "Validator.h"
-#include <iostream>
-#include <sstream>
 #include <vector>
+#include <sstream>
 #include <string>
 
 using namespace std;
@@ -24,6 +23,11 @@ Validator::Validator(string username, string password, string email, string phon
 
 Validator::~Validator()
 {
+}
+
+bool Validator::isValid()
+{
+    return isUsernameValid() || isPasswordValid() || isEmailValid() || isPhoneNumberValid();
 }
 
 bool Validator::hasProperLength(string data, size_t begin, size_t end)
@@ -95,7 +99,7 @@ bool Validator::isProperEmail(string data)
         tokens.push_back(token);
     }
 
-    return data.find('@') != string::npos && 
+    return data.find('@') != string::npos &&
            (tokens[tokens.size() - 1] == "com" || tokens[tokens.size() - 1] == "pl");
 }
 
@@ -127,7 +131,7 @@ string Validator::getUsername()
 string Validator::getEmail()
 {
     return this->email;
-}   
+}
 
 string Validator::getPhoneNumber()
 {
