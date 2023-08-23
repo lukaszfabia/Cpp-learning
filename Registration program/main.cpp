@@ -7,11 +7,13 @@ using namespace std;
 
 int main()
 {
-    Registration registration;
-    registration.setEmail("ufabiaw21@interia.pl");
-    registration.setUsername("uFabiaw21");
-    registration.setPassword("123456789AAAdmin!");
-    registration.setPhoneNumber("12345891");
+    Registration registration = Registration("nowePorawioene2002", "123456789AAAdmi!!n", "ufabiaw21@interia.pl", "123456789");
     cout<<registration.authorize()<<endl;
+    registration.setEmail("ufabi1@interia.pl");
+    registration.setPhoneNumber("123456781");
+    registration.setUsername("nser202212HAAHAXD");
+    cout<<registration.authorize()<<endl;
+    registration.data.showData();
+
     return 0;
 }

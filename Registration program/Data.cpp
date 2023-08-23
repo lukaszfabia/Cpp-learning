@@ -5,6 +5,11 @@
 
 using namespace std;
 
+Data::Data()
+{
+    this->validator = Validator();
+}
+
 Data::Data(Validator validator)
 {
     this->validator = validator;
@@ -43,20 +48,19 @@ bool Data::isUnique()
 
 bool Data::addData(Validator validator)
 {
-    if (data.empty())
+    if (data.empty() || (isUnique() && isAllDataValid()))
     {
         data.push_back(validator);
+        return true;
     }
-    else
-    {
-        if (isUnique() && isAllDataValid())
-        {
-            data.push_back(validator);
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+    return false;
+}
+
+void Data::showData()
+{
+    for (Validator obj : data){
+        cout << obj.getUsername() << " ";
+        cout << obj.getEmail() << " ";
+        cout << obj.getPhoneNumber() << endl;
     }
 }

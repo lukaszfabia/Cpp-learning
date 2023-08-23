@@ -5,6 +5,8 @@
 #include <string>
 #include "Validator.h"
 #include "Validator.cpp"
+#include "Data.h"
+#include "Data.cpp"
 
 using namespace std;
 
@@ -21,6 +23,7 @@ private:
     void save();
 
 public:
+    Data data;
     Registration();
     Registration(string username, string password, string email, string phoneNumber);
     ~Registration();

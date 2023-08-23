@@ -18,7 +18,7 @@ Validator::Validator(string username, string password, string email, string phon
 {
     this->email = email;
     this->password = password;
-    this->phoneNumber = phoneNumber.replace(phoneNumber.find(""), 1, "");
+    this->phoneNumber = phoneNumber;
     this->username = username;
 }
 
@@ -101,12 +101,12 @@ bool Validator::isProperEmail(string data)
 
 bool Validator::isUsernameValid()
 {
-    return !(hasProperLength(username, 5, 20) && hasBigLetter(username) && hasOnlyLettersAndNumbers(username));
+    return !(hasProperLength(username, 5, 40) && hasBigLetter(username) && hasOnlyLettersAndNumbers(username));
 }
 
 bool Validator::isPasswordValid()
 {
-    return !(hasProperLength(password, 8, 20) && hasBigLetter(password) && hasSpecialCharacter(password));
+    return !(hasProperLength(password, 8, 40) && hasBigLetter(password) && hasSpecialCharacter(password));
 }
 
 bool Validator::isEmailValid()
@@ -133,4 +133,3 @@ string Validator::getPhoneNumber()
 {
     return this->phoneNumber;
 }
-

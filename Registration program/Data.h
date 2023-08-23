@@ -3,8 +3,6 @@
 
 #include <string>
 #include <vector>
-#include "Validator.h"
-#include "Validator.cpp"
 
 using namespace std;
 
@@ -22,9 +20,11 @@ class Data
         bool isUnique();
 
     public:
+        Data();
         Data(Validator validator);
         ~Data();
         bool addData(Validator validator);
+        void showData();
 };
 
 #endif

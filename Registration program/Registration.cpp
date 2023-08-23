@@ -3,6 +3,7 @@
 #include <fstream>
 #include "Registration.h"
 #include "Validator.h"
+#include "Data.h"
 
 using namespace std;
 
@@ -12,6 +13,8 @@ Registration::Registration()
     this->password = "";
     this->email = "";
     this->phoneNumber = "";
+    this->validator = Validator();
+    this->data = Data(validator);
 }
 
 Registration::Registration(string username, string password, string email, string phoneNumber)
@@ -21,6 +24,7 @@ Registration::Registration(string username, string password, string email, strin
     this->email = email;
     this->phoneNumber = phoneNumber;
     this->validator = Validator(username, password, email, phoneNumber);
+    this->data = Data(validator);
 }
 
 Registration::~Registration()
@@ -29,18 +33,15 @@ Registration::~Registration()
 
 string Registration::authorize()
 {
-    bool isAllDataValid = validator.isUsernameValid() &&
-                          validator.isPasswordValid() &&
-                          validator.isEmailValid() &&
-                          validator.isPhoneNumberValid();
-
-    if (isAllDataValid)
+    if (data.addData(validator))
     {
         save();
+        return "Registration successful";
     }
-
-    //return isAllDataValid ? "Registration successful!" : "Registration failed!";
-    return to_string(validator.isPasswordValid());
+    else
+    {
+        return "Registration failed";
+    }
 }
 
 void Registration::save()
