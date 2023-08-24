@@ -1,6 +1,7 @@
 #include "System.h"
 #include "Account.h"
 #include <iostream>
+#include <fstream>
 
 System::System()
 {
@@ -17,6 +18,7 @@ bool System::addNewAccount(Registration registration)
     if (accounts.empty() || isUnique(registration))
     {
         accounts.push_back(registration);
+        save(registration);
         return true;
     }
     else
@@ -40,8 +42,8 @@ bool System::isUnique(Registration registration)
 bool System::equals(Registration registration, Account account)
 {
     return registration.getEmail() == account.getEmail() ||
-        registration.getPhoneNumber() == account.getPhoneNumber() ||
-        registration.getUsername() == account.getUsername();
+           registration.getPhoneNumber() == account.getPhoneNumber() ||
+           registration.getUsername() == account.getUsername();
 }
 
 bool System::registerUser()
@@ -76,13 +78,57 @@ bool System::loginUser()
     {
         if (account.getUsername() == username && account.getPassword() == password)
         {
-            cout<<"Login successful!"<<endl;
+            cout << "Login successful!" << endl;
             setAccount(account);
             return true;
         }
     }
-    cout<<"Username or password is incorrect!"<<endl;
+    cout << "Username or password is incorrect!" << endl;
     return false;
+}
+
+bool System::save(Registration newAccount)
+{
+    fstream File;
+    File.open("data.txt", ios::out);
+
+    if (File.is_open())
+    {
+        File << newAccount.getUsername() << endl;
+        File << newAccount.getPassword() << endl;
+        File << newAccount.getEmail() << endl;
+        File << newAccount.getPhoneNumber() << endl;
+        File.close();
+        return true;
+    }
+    else
+    {
+        cout << "Error opening file!" << endl;
+        return false;
+    }
+}
+
+bool System::load()
+{
+    fstream File;
+    File.open("data.txt", ios::in);
+
+    if (File.is_open())
+    {
+        string username, password, email, phoneNumber;
+        while (File >> username >> password >> email >> phoneNumber)
+        {
+            Account account(username, password, email, phoneNumber);
+            accounts.push_back(account);
+        }
+        File.close();
+        return true;
+    }
+    else
+    {
+        cout << "Error opening file!" << endl;
+        return false;
+    }
 }
 
 void System::setAccount(Account account)
@@ -92,6 +138,8 @@ void System::setAccount(Account account)
 
 void System::home()
 {
+    this->load();
+
     int choice;
     bool isRunning = true;
     while (isRunning)
@@ -131,7 +179,8 @@ void System::home()
     }
 }
 
-void handleNationality(Account &account) {
+void handleNationality(Account &account)
+{
     cout << "It looks like you don't have a set nationality! Do you want to fix it?" << endl;
     cout << "1. Yes" << endl;
     cout << "2. No" << endl;
@@ -139,21 +188,28 @@ void handleNationality(Account &account) {
     int choice;
     cin >> choice;
 
-    if (choice == 1) {
+    if (choice == 1)
+    {
         account.setNationality();
-    } else if (choice == 2) {
+        cout << account.information() << endl;
+    }
+    else if (choice == 2)
+    {
         cout << "Ok, you can do it later!" << endl;
-    } else {
+    }
+    else
+    {
         cout << "Invalid choice!" << endl;
         handleNationality(account);
     }
 }
 
-void System::mainMenu(Account &account) {
+void System::mainMenu(Account &account)
+{
     cout << account.information() << endl;
 
-    if (account.getNationality() == "") {
+    if (account.getNationality() == "")
+    {
         handleNationality(account);
     }
 }
-

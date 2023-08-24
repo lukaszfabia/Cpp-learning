@@ -61,9 +61,14 @@ string Account::getNationality()
     return this->nationality;
 }
 
+double Account::getBalance()
+{
+    return this->balance;
+}
+
 string Account::information()
 {
-    return username + " " + to_string(balance);
+    return "\nLogin: " +username + "\nYour balance: " + to_string(balance) + "\nNationality: " + getNationality() + "\n";
 }
 
 void Account::setNationality()

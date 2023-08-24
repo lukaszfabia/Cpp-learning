@@ -23,6 +23,9 @@ private:
     bool registerUser();
     bool loginUser();
 
+    bool save(Registration newAccount);
+    bool load();
+
     void setAccount(Account account);
 
 public:

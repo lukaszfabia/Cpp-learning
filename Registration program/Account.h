@@ -28,6 +28,7 @@ public:
     string getPhoneNumber();
     string getPassword();
     string getNationality();
+    double getBalance();
 
     string information();
     void setNationality();
