@@ -43,3 +43,7 @@ output/
 build/
 
 cmake-build-debug/
+pointers/
+classes/
+some new things/
+.idea/
