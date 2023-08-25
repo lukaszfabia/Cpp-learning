@@ -4,6 +4,7 @@
 #include <sstream>
 #include <string>
 #include <algorithm>
+#include <iostream>
 
 using namespace std;
 
@@ -37,9 +38,11 @@ bool Validator::hasBigLetter(const string &data) {
 }
 
 bool Validator::hasOnlyLettersAndNumbers(const string &data) {
-    return all_of(data.begin(), data.end(), [](char i) { return (i < '0' || i > '9') &&
-                                                                (i < 'A' || i > 'Z') &&
-                                                                (i < 'a' || i > 'z'); });
+    return all_of(data.begin(), data.end(), [](char i) {
+        return (i >= '0' && i <= '9') ||
+               (i >= 'A' && i <= 'Z') ||
+               (i >= 'a' && i <= 'z');
+    });
 }
 
 bool Validator::hasOnlyNumbers(const string &data) {
@@ -47,14 +50,11 @@ bool Validator::hasOnlyNumbers(const string &data) {
 }
 
 bool Validator::hasSpecialCharacter(const string &data) {
-    for (char i: data) {
-        if ((i < '0' || i > '9') &&
-            (i < 'A' || i > 'Z') &&
-            (i < 'a' || i > 'z')) {
-            return true;
-        }
-    }
-    return false;
+    return any_of(data.begin(), data.end(), [](char i) {
+        return (i < '0' || i > '9') &&
+               (i < 'A' || i > 'Z') &&
+               (i < 'a' || i > 'z');
+    });
 }
 
 bool Validator::isProperEmail(const string &data) {
