@@ -13,12 +13,12 @@ private:
     string email;
     string phoneNumber;
 
-    bool hasProperLength(string data, size_t begin, size_t end);
-    bool hasBigLetter(string data);
-    bool hasOnlyLettersAndNumbers(string data);
-    bool hasSpecialCharacter(string data);
-    bool hasOnlyNumbers(string data);
-    bool isProperEmail(string data);
+    static bool hasProperLength(const string& data, size_t begin, size_t end);
+    static bool hasBigLetter(const string& data);
+    static bool hasOnlyLettersAndNumbers(const string& data);
+    static bool hasSpecialCharacter(const string& data);
+    static bool hasOnlyNumbers(const string& data);
+    static bool isProperEmail(const string& data);
 
     bool isUsernameValid();
     bool isPasswordValid();

@@ -1,6 +1,4 @@
-#include <iostream>
-#include "System.h"
-#include "System.cpp"
+#include "headers/System.h"
 
 using namespace std;
 

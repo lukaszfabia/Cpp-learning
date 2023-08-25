@@ -19,7 +19,7 @@ private:
 public:
     Account();
     Account(string username, string password, string email, string phoneNumber);
-    Account(Registration registration);
+    explicit Account(Registration registration);
     ~Account();
 
     //getters
@@ -31,6 +31,9 @@ public:
     double getBalance();
 
     string information();
+
+    //setters
+    void setBalance(double balance);
     void setNationality();
 };
 

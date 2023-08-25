@@ -1,7 +1,7 @@
-#include "Account.h"
-#include "Validator.h"
+#include "headers/Account.h"
 #include <iostream>
 #include <string>
+#include <utility>
 
 using namespace std;
 
@@ -16,10 +16,10 @@ Account::Account()
 
 Account::Account(string username, string password, string email, string phoneNumber)
 {
-    this->username = username;
-    this->password = password;
-    this->email = email;
-    this->phoneNumber = phoneNumber;
+    this->username = std::move(username);
+    this->password = std::move(password);
+    this->email = std::move(email);
+    this->phoneNumber = std::move(phoneNumber);
     this->balance = 0;
 }
 
@@ -33,8 +33,7 @@ Account::Account(Registration registration)
 }
 
 Account::~Account()
-{
-}
+= default;
 
 string Account::getUsername()
 {
@@ -64,6 +63,11 @@ string Account::getNationality()
 double Account::getBalance()
 {
     return this->balance;
+}
+
+void Account::setBalance(double balance)
+{
+    this->balance = balance;
 }
 
 string Account::information()

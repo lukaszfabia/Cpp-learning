@@ -1,9 +1,9 @@
-#include "Registration.h"
+#include "headers/Registration.h"
 #include <string>
 
 using namespace std;
 
-Registration::Registration(string username, string password, string email, string phoneNumber)
+Registration::Registration(const string& username, const string& password, const string& email, const string& phoneNumber)
 {
     this->username = username;
     this->password = password;
@@ -13,8 +13,7 @@ Registration::Registration(string username, string password, string email, strin
 }
 
 Registration::~Registration()
-{
-}
+= default;
 
 string Registration::getUsername()
 {

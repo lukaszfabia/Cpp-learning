@@ -4,9 +4,7 @@
 #include <string>
 #include <vector>
 #include "Registration.h"
-#include "Registration.cpp"
 #include "Account.h"
-#include "Account.cpp"
 
 using namespace std;
 
@@ -16,23 +14,23 @@ private:
     vector <Account> accounts;
     Account temporaryAccount;
 
-    bool addNewAccount(Registration registration);
-    bool isUnique(Registration registration);
-    bool equals(Registration registration, Account account);
+    bool addNewAccount(const Registration& registration);
+    bool isUnique(const Registration& registration);
+    static bool equals(Registration registration, Account account);
 
     bool registerUser();
     bool loginUser();
 
-    bool save(Registration newAccount);
+    static bool save(Registration newAccount);
     bool load();
 
-    void setAccount(Account account);
+    void setAccount(const Account& account);
 
 public:
     System();
     ~System();
     void home();
-    void mainMenu(Account &account);
+    static void mainMenu(Account &account);
 };
 
 #endif

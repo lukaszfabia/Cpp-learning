@@ -3,7 +3,6 @@
 
 #include <string>
 #include "Validator.h"
-#include "Validator.cpp" 
 
 using namespace std;
 
@@ -19,7 +18,7 @@ protected:
     Validator validator;
 
 public: 
-    Registration(string username, string password, string email, string phoneNumber);
+    Registration(const string& username, const string& password, const string& email, const string& phoneNumber);
     ~Registration();
 
     string getUsername();

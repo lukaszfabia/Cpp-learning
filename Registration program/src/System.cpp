@@ -1,7 +1,8 @@
-#include "System.h"
-#include "Account.h"
+#include "headers/System.h"
+#include "headers/Account.h"
 #include <iostream>
 #include <fstream>
+#include <algorithm>
 
 System::System()
 {
@@ -13,11 +14,12 @@ System::~System()
     delete &accounts;
 }
 
-bool System::addNewAccount(Registration registration)
+bool System::addNewAccount(const Registration& registration)
 {
     if (accounts.empty() || isUnique(registration))
     {
-        accounts.push_back(registration);
+        Account account(registration);
+        accounts.push_back(account);
         save(registration);
         return true;
     }
@@ -27,16 +29,13 @@ bool System::addNewAccount(Registration registration)
     }
 }
 
-bool System::isUnique(Registration registration)
+bool System::isUnique(const Registration& registration)
 {
-    for (Account account : accounts)
+    // functional example
+    return all_of(accounts.begin(), accounts.end(), [registration](const Account& account)
     {
-        if (equals(registration, account))
-        {
-            return false;
-        }
-    }
-    return true;
+        return !equals(registration, account);
+    });
 }
 
 bool System::equals(Registration registration, Account account)
@@ -131,7 +130,7 @@ bool System::load()
     }
 }
 
-void System::setAccount(Account account)
+void System::setAccount(const Account& account)
 {
     this->temporaryAccount = account;
 }
@@ -181,26 +180,30 @@ void System::home()
 
 void handleNationality(Account &account)
 {
-    cout << "It looks like you don't have a set nationality! Do you want to fix it?" << endl;
-    cout << "1. Yes" << endl;
-    cout << "2. No" << endl;
+    bool is_good = false;
+    while (!is_good){
+        cout << "It looks like you don't have a set nationality! Do you want to fix it?" << endl;
+        cout << "1. Yes" << endl;
+        cout << "2. No" << endl;
 
-    int choice;
-    cin >> choice;
+        int choice;
+        cin >> choice;
 
-    if (choice == 1)
-    {
-        account.setNationality();
-        cout << account.information() << endl;
-    }
-    else if (choice == 2)
-    {
-        cout << "Ok, you can do it later!" << endl;
-    }
-    else
-    {
-        cout << "Invalid choice!" << endl;
-        handleNationality(account);
+        if (choice == 1)
+        {
+            account.setNationality();
+            cout << account.information() << endl;
+            is_good = true;
+        }
+        else if (choice == 2)
+        {
+            cout << "Ok, you can do it later!" << endl;
+            is_good = true;
+        }
+        else
+        {
+            cout << "Invalid choice!" << endl;
+        }
     }
 }
 
@@ -208,7 +211,7 @@ void System::mainMenu(Account &account)
 {
     cout << account.information() << endl;
 
-    if (account.getNationality() == "")
+    if (account.getNationality().empty())
     {
         handleNationality(account);
     }
