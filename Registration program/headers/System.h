@@ -13,7 +13,7 @@ private:
     vector<Account> accounts;
     Account temporaryAccount;
 
-    bool addNewAccount(const Registration &registration);
+    bool addNewAccount(Registration &registration);
 
     bool isUnique(const Registration &registration);
 
@@ -22,10 +22,6 @@ private:
     bool registerUser();
 
     bool loginUser();
-
-    static bool save(Registration newAccount);
-
-    bool load();
 
     void setAccount(const Account &account);
 

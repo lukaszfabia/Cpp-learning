@@ -1,6 +1,6 @@
 #include "headers/System.h"
-#include <iostream>
-#include <fstream>
+#include "headers/ReadInput.h"
+#include "headers/File.h"
 #include <algorithm>
 
 System::System() {
@@ -11,12 +11,11 @@ System::~System() {
     delete &accounts;
 }
 
-bool System::addNewAccount(const Registration &registration) {
+bool System::addNewAccount(Registration &registration) {
     if (accounts.empty() || isUnique(registration)) {
         Account account(registration);
         accounts.push_back(account);
-        save(registration);
-        return true;
+        return File::save(registration, "data.txt");
     } else {
         return false;
     }
@@ -41,14 +40,15 @@ bool System::registerUser() {
     string email;
     string phoneNumber;
 
-    cout << "Enter username: ";
-    cin >> username;
-    cout << "Enter password: ";
-    cin >> password;
-    cout << "Enter email: ";
-    cin >> email;
-    cout << "Enter phone number: ";
-    cin >> phoneNumber;
+    ReadInput::print("Enter username: ");
+    username = ReadInput::readString(1);
+    ReadInput::print("Enter password: ");
+    password = ReadInput::readString(1);
+    ReadInput::print("Enter email: ");
+    email = ReadInput::readString(1);
+    ReadInput::print("Enter phone number: ");
+    phoneNumber = ReadInput::readString(1);
+
 
     Registration registration(username, password, email, phoneNumber);
     return registration.authorize() && addNewAccount(registration);
@@ -56,79 +56,45 @@ bool System::registerUser() {
 
 bool System::loginUser() {
     string username, password;
-    cout << "Enter username: ";
-    cin >> username;
-    cout << "Enter password: ";
-    cin >> password;
+    ReadInput::print("Enter username: ");
+    username = ReadInput::readString(1);
+    ReadInput::print("Enter password: ");
+    password = ReadInput::readString(1);
 
     for (Account account: accounts) {
         if (account.getUsername() == username && account.getPassword() == password) {
-            cout << "Login successful!" << endl;
+            ReadInput::print("Login successful!");
             setAccount(account);
             return true;
         }
     }
-    cout << "Username or password is incorrect!" << endl;
+    ReadInput::print("Username or password is incorrect!");
     return false;
 }
 
-bool System::save(Registration newAccount) {
-    fstream File;
-    File.open("data.txt", ios::out);
-
-    if (File.is_open()) {
-        File << newAccount.getUsername() << endl;
-        File << newAccount.getPassword() << endl;
-        File << newAccount.getEmail() << endl;
-        File << newAccount.getPhoneNumber() << endl;
-        File.close();
-        return true;
-    } else {
-        cout << "Error opening file!" << endl;
-        return false;
-    }
-}
-
-bool System::load() {
-    fstream File;
-    File.open("data.txt", ios::in);
-
-    if (File.is_open()) {
-        string username, password, email, phoneNumber;
-        while (File >> username >> password >> email >> phoneNumber) {
-            Account account(username, password, email, phoneNumber);
-            accounts.push_back(account);
-        }
-        File.close();
-        return true;
-    } else {
-        cout << "Error opening file!" << endl;
-        return false;
-    }
-}
 
 void System::setAccount(const Account &account) {
     this->temporaryAccount = account;
 }
 
 void System::home() {
-    this->load();
+    File::load(accounts, "data.txt");
 
     int choice;
     bool isRunning = true;
     while (isRunning) {
-        cout << "1. Register" << endl;
-        cout << "2. Login" << endl;
-        cout << "3. Exit" << endl;
-        cout << "Enter your choice: ";
-        cin >> choice;
+        ReadInput::print("1. Register\n");
+        ReadInput::print("2. Login\n");
+        ReadInput::print("3. Exit\n");
+        ReadInput::print("Enter your choice: ");
+        choice = ReadInput::readInt(1);
 
         switch (choice) {
             case 1:
                 if (registerUser()) {
-                    cout << "Registration successful!" << endl;
+                    ReadInput::print("Registration successful!\n");
                 } else {
-                    cout << "Registration failed!" << endl;
+                    ReadInput::print("Registration failed!\n");
                 }
                 break;
             case 2:
@@ -141,7 +107,7 @@ void System::home() {
                 isRunning = false;
                 break;
             default:
-                cout << "Invalid choice!" << endl;
+                ReadInput::print("Invalid choice!\n");
                 break;
         }
     }
@@ -150,28 +116,27 @@ void System::home() {
 void handleNationality(Account &account) {
     bool is_good = false;
     while (!is_good) {
-        cout << "It looks like you don't have a set nationality! Do you want to fix it?" << endl;
-        cout << "1. Yes" << endl;
-        cout << "2. No" << endl;
+        ReadInput::print("It looks like you don't have a set nationality! Do you want to fix it?\n");
+        ReadInput::print("1. Yes\n");
+        ReadInput::print("2. No\n");
 
-        int choice;
-        cin >> choice;
+        int choice = ReadInput::readInt(1);
 
         if (choice == 1) {
             account.setNationality();
-            cout << account.information() << endl;
+            ReadInput::print(account.information());
             is_good = true;
         } else if (choice == 2) {
-            cout << "Ok, you can do it later!" << endl;
+            ReadInput::print("It's ok then!\n");
             is_good = true;
         } else {
-            cout << "Invalid choice!" << endl;
+            ReadInput::print("Invalid choice!\n");
         }
     }
 }
 
 void System::mainMenu(Account &account) {
-    cout << account.information() << endl;
+    ReadInput::print(account.information());
 
     if (account.getNationality().empty()) {
         handleNationality(account);

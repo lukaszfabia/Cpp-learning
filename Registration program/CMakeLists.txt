@@ -14,5 +14,5 @@ add_executable(cpp_learning
         "src/System.cpp"
         "headers/System.h"
         "src/Validator.cpp"
-        "headers/Validator.h")
+        "headers/Validator.h" src/ReadInput.cpp headers/ReadInput.h headers/ReadInput.h src/File.cpp headers/File.h)
 

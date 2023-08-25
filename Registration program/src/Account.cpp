@@ -1,5 +1,5 @@
 #include "headers/Account.h"
-#include <iostream>
+#include "headers/ReadInput.h"
 #include <string>
 #include <utility>
 
@@ -67,9 +67,10 @@ string Account::information() {
 
 void Account::setNationality() {
     string new_nationality;
-    cout << "Enter new nationality: ";
-    cin >> new_nationality;
+    ReadInput::print("Enter new nationality: ");
+    //cout << "Enter new nationality: ";
+    //cin >> new_nationality;
 
-    this->nationality = new_nationality;
+    this->nationality = ReadInput::readString(1);
 }
 
