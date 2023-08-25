@@ -28,12 +28,12 @@ public:
     string getPhoneNumber();
     string getPassword();
     string getNationality();
-    double getBalance();
+    double getBalance() const;
 
     string information();
 
     //setters
-    void setBalance(double balance);
+    void setBalance(double money);
     void setNationality();
 };
 

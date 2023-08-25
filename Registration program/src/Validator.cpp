@@ -4,7 +4,6 @@
 #include <sstream>
 #include <string>
 #include <algorithm>
-#include <iostream>
 
 using namespace std;
 
@@ -85,16 +84,4 @@ bool Validator::isEmailValid() {
 
 bool Validator::isPhoneNumberValid() {
     return !(hasOnlyNumbers(phoneNumber) && hasProperLength(phoneNumber, 8, 10));
-}
-
-string Validator::getUsername() {
-    return this->username;
-}
-
-string Validator::getEmail() {
-    return this->email;
-}
-
-string Validator::getPhoneNumber() {
-    return this->phoneNumber;
 }

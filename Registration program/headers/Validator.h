@@ -30,9 +30,6 @@ public:
     Validator(string username, string password, string email, string phoneNumber);
     ~Validator();
     bool isValid();
-    string getUsername();
-    string getEmail();
-    string getPhoneNumber();
 };
 
 #endif

@@ -60,19 +60,19 @@ string Account::getNationality()
     return this->nationality;
 }
 
-double Account::getBalance()
+double Account::getBalance() const
 {
     return this->balance;
 }
 
-void Account::setBalance(double balance)
+void Account::setBalance(double money)
 {
-    this->balance = balance;
+    this->balance = money;
 }
 
 string Account::information()
 {
-    return "\nLogin: " +username + "\nYour balance: " + to_string(balance) + "\nNationality: " + getNationality() + "\n";
+    return "\nLogin: " +username + "\nYour balance: " + to_string(getBalance()) + "\nNationality: " + getNationality() + "\n";
 }
 
 void Account::setNationality()
