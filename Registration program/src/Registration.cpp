@@ -3,8 +3,8 @@
 
 using namespace std;
 
-Registration::Registration(const string& username, const string& password, const string& email, const string& phoneNumber)
-{
+Registration::Registration(const string &username, const string &password, const string &email,
+                           const string &phoneNumber) {
     this->username = username;
     this->password = password;
     this->email = email;
@@ -15,27 +15,22 @@ Registration::Registration(const string& username, const string& password, const
 Registration::~Registration()
 = default;
 
-string Registration::getUsername()
-{
+string Registration::getUsername() {
     return this->username;
 }
 
-string Registration::getEmail()
-{
+string Registration::getEmail() {
     return this->email;
 }
 
-string Registration::getPhoneNumber()
-{
+string Registration::getPhoneNumber() {
     return this->phoneNumber;
 }
 
-string Registration::getPassword()
-{
+string Registration::getPassword() {
     return this->password;
 }
 
-bool Registration::authorize()
-{
+bool Registration::authorize() {
     return !validator.isValid();
 }

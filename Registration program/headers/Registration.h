@@ -6,8 +6,7 @@
 
 using namespace std;
 
-class Registration
-{
+class Registration {
 private:
     string username;
     string password;
@@ -17,13 +16,17 @@ private:
 protected:
     Validator validator;
 
-public: 
-    Registration(const string& username, const string& password, const string& email, const string& phoneNumber);
+public:
+    Registration(const string &username, const string &password, const string &email, const string &phoneNumber);
+
     ~Registration();
 
     string getUsername();
+
     string getEmail();
+
     string getPhoneNumber();
+
     string getPassword();
 
     bool authorize();
