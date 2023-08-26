@@ -15,7 +15,7 @@ public:
 
     bool load(vector<Account> &accounts, const string &fileName) override;
 
-    bool save(Registration &data, const string &fileName) override;
+    bool save(Registration &data, const string &fileName, vector<Account> &accounts) override;
 };
 
 

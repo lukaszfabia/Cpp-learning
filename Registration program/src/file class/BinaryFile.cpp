@@ -35,12 +35,14 @@ bool BinaryFile::load(vector<Account> &accounts, const string &fileName) {
     }
 }
 
-bool BinaryFile::save(Registration &newAccount, const string &fileName) {
+bool BinaryFile::save(Registration &newAccount, const string &fileName, vector<Account> &accounts) {
     const std::string newFileName = fileName + ".bin";
     std::ofstream File(newFileName, std::ios::binary);
 
     if (File.is_open()) {
-        File.write(reinterpret_cast<const char *>(&newAccount), sizeof(Registration));
+        for (Account &item: accounts) {
+            File.write(reinterpret_cast<const char *>(&item), sizeof(Account));
+        }
         File.close();
         return true;
     } else {

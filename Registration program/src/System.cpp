@@ -18,14 +18,10 @@ bool System::addNewAccount(Registration &registration) {
         Account account(registration);
         accounts.push_back(account);
         File *file = new CasualFile();
-        bool resultTxt = file->save(registration, "data");
+        bool resultTxt = file->save(registration, "data", accounts);
         delete file;
 
-        File *bin = new BinaryFile();
-        bool resultBin = bin->save(registration, "data");
-        delete bin;
-
-        return resultTxt && resultBin;
+        return resultTxt;
     } else {
         return false;
     }
@@ -126,8 +122,8 @@ void System::home() {
 }
 
 void handleNationality(Account &account) {
-    bool is_good = false;
-    while (!is_good) {
+    bool isGood = false;
+    while (!isGood) {
         ReadInput::print("It looks like you don't have a set nationality! Do you want to fix it?\n");
         ReadInput::print("1. Yes\n");
         ReadInput::print("2. No\n");
@@ -137,10 +133,10 @@ void handleNationality(Account &account) {
         if (choice == 1) {
             account.setNationality();
             ReadInput::print(account.information());
-            is_good = true;
+            isGood = true;
         } else if (choice == 2) {
             ReadInput::print("It's ok then!\n");
-            is_good = true;
+            isGood = true;
         } else {
             ReadInput::print("Invalid choice!\n");
         }
@@ -150,6 +146,7 @@ void handleNationality(Account &account) {
 void System::mainMenu(Account &account) {
     ReadInput::print(account.information());
 
+    // check is nationality set
     if (account.getNationality().empty()) {
         handleNationality(account);
     }

@@ -68,8 +68,6 @@ string Account::information() {
 void Account::setNationality() {
     string new_nationality;
     ReadInput::print("Enter new nationality: ");
-    //cout << "Enter new nationality: ";
-    //cin >> new_nationality;
 
     this->nationality = ReadInput::readString(1);
 }

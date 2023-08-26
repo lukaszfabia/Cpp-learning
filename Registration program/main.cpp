@@ -3,8 +3,10 @@
 using namespace std;
 
 int main() {
-    System system;
-    system.home();
+    auto *system = new System();
+    system->home();
+
+    delete system;
 
     return 0;
 }
