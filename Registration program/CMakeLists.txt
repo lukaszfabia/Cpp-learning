@@ -14,5 +14,5 @@ add_executable(cpp_learning
         "src/System.cpp"
         "headers/System.h"
         "src/Validator.cpp"
-        "headers/Validator.h" src/ReadInput.cpp headers/ReadInput.h headers/ReadInput.h src/File.cpp headers/File.h src/BinaryFile.cpp headers/BinaryFile.h headers/BinaryFile.h src/CasualFile.cpp src/CasualFile.h)
+        "headers/Validator.h" src/ReadInput.cpp headers/ReadInput.h headers/ReadInput.h "headers/file headers/File.h" "src/file class/BinaryFile.cpp" "headers/file headers/BinaryFile.h" "headers/file headers/BinaryFile.h" "src/file class/CasualFile.cpp" "headers/file headers/CasualFile.h")
 

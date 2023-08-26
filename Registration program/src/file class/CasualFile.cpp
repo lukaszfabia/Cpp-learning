@@ -2,16 +2,16 @@
 // Created by ufabi on 26.08.2023.
 //
 
-#include "CasualFile.h"
+#include "headers/file headers/CasualFile.h"
 #include "headers/ReadInput.h"
-#include "headers/Registration.h"
 
 CasualFile::~CasualFile()
 = default;
 
 bool CasualFile::load(vector<Account> &accounts, const string &fileName) {
+    string newFileName = fileName + ".txt";
     fstream File;
-    File.open(fileName, ios::in);
+    File.open(newFileName, ios::in);
 
     if (File.is_open()) {
         string username, password, email, phoneNumber;

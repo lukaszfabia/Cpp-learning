@@ -1,6 +1,8 @@
 #include "headers/System.h"
 #include "headers/ReadInput.h"
-#include "headers/File.h"
+#include "headers/file headers/File.h"
+#include "headers/file headers/CasualFile.h"
+#include "headers/file headers/BinaryFile.h"
 #include <algorithm>
 
 System::System() {
@@ -15,8 +17,15 @@ bool System::addNewAccount(Registration &registration) {
     if (accounts.empty() || isUnique(registration)) {
         Account account(registration);
         accounts.push_back(account);
-        //return File::save(registration, "data.txt");
-        return true; // added
+        File *file = new CasualFile();
+        bool resultTxt = file->save(registration, "data");
+        delete file;
+
+        File *bin = new BinaryFile();
+        bool resultBin = bin->save(registration, "data");
+        delete bin;
+
+        return resultTxt && resultBin;
     } else {
         return false;
     }
@@ -79,12 +88,14 @@ void System::setAccount(const Account &account) {
 }
 
 void System::home() {
-    //File::load(accounts, "data.txt");
+    File *file = new CasualFile();
+    file->load(accounts, "data");
+    delete file;
 
     int choice;
     bool isRunning = true;
     while (isRunning) {
-        ReadInput::print("1. Register\n");
+        ReadInput::print("\n1. Register\n");
         ReadInput::print("2. Login\n");
         ReadInput::print("3. Exit\n");
         ReadInput::print("Enter your choice: ");
