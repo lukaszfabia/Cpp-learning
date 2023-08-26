@@ -6,7 +6,10 @@
 #include "headers/ReadInput.h"
 #include <vector>
 
-bool File::save(Registration &newAccount, const string& fileName) {
+
+File::~File() = default;
+
+bool File::save(Registration &newAccount, const string &fileName) {
     fstream File;
     File.open(fileName, ios::out);
 
@@ -23,7 +26,7 @@ bool File::save(Registration &newAccount, const string& fileName) {
     }
 }
 
-bool File::load(vector<Account> &accounts, const string& fileName) {
+bool File::load(vector<Account> &accounts, const string &fileName) {
     fstream File;
     File.open(fileName, ios::in);
 

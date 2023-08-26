@@ -15,7 +15,8 @@ bool System::addNewAccount(Registration &registration) {
     if (accounts.empty() || isUnique(registration)) {
         Account account(registration);
         accounts.push_back(account);
-        return File::save(registration, "data.txt");
+        //return File::save(registration, "data.txt");
+        return true; // added
     } else {
         return false;
     }
@@ -78,7 +79,7 @@ void System::setAccount(const Account &account) {
 }
 
 void System::home() {
-    File::load(accounts, "data.txt");
+    //File::load(accounts, "data.txt");
 
     int choice;
     bool isRunning = true;

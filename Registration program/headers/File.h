@@ -14,9 +14,12 @@ using namespace std;
 
 class File {
 public:
-    static bool load(vector<Account> &accounts, const string &fileName);
 
-    static bool save(Registration &data, const string &fileName);
+    virtual ~File();
+
+    virtual bool load(vector<Account> &accounts, const string &fileName);
+
+    virtual bool save(Registration &newAccount, const string &fileName);
 };
 
 
