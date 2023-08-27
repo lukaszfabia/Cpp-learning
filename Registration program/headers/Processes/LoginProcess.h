@@ -8,19 +8,20 @@
 
 #include "Process.h"
 
-class LoginProcess: public Process{
+class LoginProcess : public Process {
 private:
-    Account *loggedAccount=nullptr;
+    Account *loggedAccount = nullptr;
 
     bool loginUser();
-    void setAccount(Account *account);
+
     bool equals(Account *account);
 
-protected:
-    void getInput() override;
-
 public:
-    explicit LoginProcess(vector<Account> &accounts);
+    explicit LoginProcess(vector<Account> &accounts, Account *loggedAccount) : Process(accounts),
+                                                                               loggedAccount(loggedAccount) {};
+    ~LoginProcess() override {
+        delete loggedAccount;
+    };
 
     bool run() override;
 };

@@ -13,26 +13,27 @@
 class RegistrationProcess : public Process {
 private:
     // variables
-    std::string email;
-    std::string phoneNumber;
+    Registration *registration=nullptr;
 
     // static methods
-    static bool equals(Registration registration, Account account);
+    bool equals(Account account);
 
     // methods
-    bool isUnique(const Registration &registration);
+    bool isUnique();
 
-    bool addNewAccount(Registration &registration);
+    bool addNewAccount();
 
     bool registerUser();
 
-protected:
-
-    void getInput() override;
+    bool saveData();
 
 public:
-    explicit RegistrationProcess(std::vector<Account> &accounts);
+    explicit RegistrationProcess(vector<Account> &accounts, Registration *registration) : Process(accounts),
+    registration(registration) {};
 
+    ~RegistrationProcess() override{
+        delete registration;
+    }
     bool run() override;
 };
 

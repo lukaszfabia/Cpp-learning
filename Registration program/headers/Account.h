@@ -35,7 +35,7 @@ public:
 
     string getNationality();
 
-    double getBalance() const;
+    [[nodiscard]] double getBalance() const;
 
     string information();
 

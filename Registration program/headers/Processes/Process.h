@@ -11,10 +11,7 @@
 
 class Process {
 protected:
-    std::string username;
-    std::string password;
     std::vector<Account> &accounts;
-    virtual void getInput()=0;
 
 public:
     explicit Process(std::vector<Account> &accounts);

@@ -1,56 +1,24 @@
 #include "headers/System.h"
 #include "headers/Tools/ReadInput.h"
-#include "headers/Tools/File.h"
-#include "headers/Tools/CasualFile.h"
-#include "headers/Processes/Process.h"
-#include "headers/Processes/RegistrationProcess.h"
-#include "headers/Processes/LoginProcess.h"
-#include <algorithm>
+#include "headers/Menu/MenuManager.h"
 
 System::System() {
     this->accounts = vector<Account>();
 }
 
 System::~System() {
-    delete &accounts;
-}
-
-void System::home() {
-    File *file = new CasualFile();
-    file->load(accounts, "data");
-    delete file;
-
-    int choice;
-    bool isRunning = true;
-    while (isRunning) {
-        ReadInput::print("\n1. Register\n");
-        ReadInput::print("2. Login\n");
-        ReadInput::print("3. Exit\n");
-        ReadInput::print("Enter your choice: ");
-        choice = ReadInput::readInt(1);
-        Process *registerProcess = new RegistrationProcess(accounts);
-        Process *loginProcess = new LoginProcess(accounts);
-        switch (choice) {
-            case 1:
-                registerProcess->run();
-                delete registerProcess;
-                break;
-            case 2:
-                loginProcess->run();
-                delete loginProcess;
-                break;
-            case 3:
-                isRunning = false;
-
-                break;
-            default:
-                ReadInput::print("Invalid choice!\n");
-                break;
-        }
+    for (auto &account : accounts) {
+        delete &account;
     }
 }
 
+void System::home() {
+    auto *menuManager=new MenuManager(accounts);
+    menuManager->build();
+}
+
 void handleNationality(Account &account) {
+    // to remove
     bool isGood = false;
     while (!isGood) {
         ReadInput::print("It looks like you don't have a set nationality! Do you want to fix it?\n");
@@ -73,6 +41,7 @@ void handleNationality(Account &account) {
 }
 
 void System::mainMenu(Account &account) {
+    //to remove
     ReadInput::print(account.information());
 
     // check is nationality set
