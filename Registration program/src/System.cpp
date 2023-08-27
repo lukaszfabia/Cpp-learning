@@ -1,8 +1,10 @@
 #include "headers/System.h"
-#include "headers/ReadInput.h"
-#include "headers/file headers/File.h"
-#include "headers/file headers/CasualFile.h"
-#include "headers/file headers/BinaryFile.h"
+#include "headers/Tools/ReadInput.h"
+#include "headers/Tools/File.h"
+#include "headers/Tools/CasualFile.h"
+#include "headers/Processes/Process.h"
+#include "headers/Processes/RegistrationProcess.h"
+#include "headers/Processes/LoginProcess.h"
 #include <algorithm>
 
 System::System() {
@@ -11,76 +13,6 @@ System::System() {
 
 System::~System() {
     delete &accounts;
-}
-
-bool System::addNewAccount(Registration &registration) {
-    if (accounts.empty() || isUnique(registration)) {
-        Account account(registration);
-        accounts.push_back(account);
-        File *file = new CasualFile();
-        bool resultTxt = file->save(registration, "data", accounts);
-        delete file;
-
-        return resultTxt;
-    } else {
-        return false;
-    }
-}
-
-bool System::isUnique(const Registration &registration) {
-    // functional example
-    return all_of(accounts.begin(), accounts.end(), [registration](const Account &account) {
-        return !equals(registration, account);
-    });
-}
-
-bool System::equals(Registration registration, Account account) {
-    return registration.getEmail() == account.getEmail() ||
-           registration.getPhoneNumber() == account.getPhoneNumber() ||
-           registration.getUsername() == account.getUsername();
-}
-
-bool System::registerUser() {
-    string username;
-    string password;
-    string email;
-    string phoneNumber;
-
-    ReadInput::print("Enter username: ");
-    username = ReadInput::readString(1);
-    ReadInput::print("Enter password: ");
-    password = ReadInput::readString(1);
-    ReadInput::print("Enter email: ");
-    email = ReadInput::readString(1);
-    ReadInput::print("Enter phone number: ");
-    phoneNumber = ReadInput::readString(1);
-
-
-    Registration registration(username, password, email, phoneNumber);
-    return registration.authorize() && addNewAccount(registration);
-}
-
-bool System::loginUser() {
-    string username, password;
-    ReadInput::print("Enter username: ");
-    username = ReadInput::readString(1);
-    ReadInput::print("Enter password: ");
-    password = ReadInput::readString(1);
-
-    for (Account account: accounts) {
-        if (account.getUsername() == username && account.getPassword() == password) {
-            ReadInput::print("Login successful!");
-            setAccount(account);
-            return true;
-        }
-    }
-    ReadInput::print("Username or password is incorrect!");
-    return false;
-}
-
-
-void System::setAccount(const Account &account) {
-    this->temporaryAccount = account;
 }
 
 void System::home() {
@@ -96,23 +28,20 @@ void System::home() {
         ReadInput::print("3. Exit\n");
         ReadInput::print("Enter your choice: ");
         choice = ReadInput::readInt(1);
-
+        Process *registerProcess = new RegistrationProcess(accounts);
+        Process *loginProcess = new LoginProcess(accounts);
         switch (choice) {
             case 1:
-                if (registerUser()) {
-                    ReadInput::print("Registration successful!\n");
-                } else {
-                    ReadInput::print("Registration failed!\n");
-                }
+                registerProcess->run();
+                delete registerProcess;
                 break;
             case 2:
-                if (loginUser()) {
-                    mainMenu(temporaryAccount);
-                    isRunning = false;
-                }
+                loginProcess->run();
+                delete loginProcess;
                 break;
             case 3:
                 isRunning = false;
+
                 break;
             default:
                 ReadInput::print("Invalid choice!\n");

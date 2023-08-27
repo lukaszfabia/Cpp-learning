@@ -2,7 +2,7 @@
 #define REGISTRATION_H
 
 #include <string>
-#include "Validator.h"
+#include "headers/Tools/Validator.h"
 
 using namespace std;
 

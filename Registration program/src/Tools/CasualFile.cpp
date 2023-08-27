@@ -2,8 +2,8 @@
 // Created by ufabi on 26.08.2023.
 //
 
-#include "headers/file headers/CasualFile.h"
-#include "headers/ReadInput.h"
+#include "headers/Tools/CasualFile.h"
+#include "headers/Tools/ReadInput.h"
 
 CasualFile::~CasualFile()
 = default;

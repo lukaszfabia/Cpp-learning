@@ -2,8 +2,9 @@
 // Created by ufabi on 25.08.2023.
 //
 
-#include "headers/ReadInput.h"
+
 #include <iostream>
+#include "headers/Tools/ReadInput.h"
 
 using namespace std;
 

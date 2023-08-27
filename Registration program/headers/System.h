@@ -13,18 +13,6 @@ private:
     vector<Account> accounts;
     Account temporaryAccount;
 
-    bool addNewAccount(Registration &registration);
-
-    bool isUnique(const Registration &registration);
-
-    static bool equals(Registration registration, Account account);
-
-    bool registerUser();
-
-    bool loginUser();
-
-    void setAccount(const Account &account);
-
 public:
     System();
 

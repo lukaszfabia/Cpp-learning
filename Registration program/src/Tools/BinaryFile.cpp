@@ -2,8 +2,8 @@
 // Created by ufabi on 26.08.2023.
 //
 
-#include "headers/file headers/BinaryFile.h"
-#include "headers/ReadInput.h"
+#include "headers/Tools/BinaryFile.h"
+#include "headers/Tools/ReadInput.h"
 
 BinaryFile::~BinaryFile() = default;
 
