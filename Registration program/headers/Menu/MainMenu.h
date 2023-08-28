@@ -10,7 +10,7 @@
 
 class MainMenu : public Menu {
 private:
-    Account *loggedAccount = nullptr;
+    Account *loggedAccount;
 
     void showPrompts() override;
 
@@ -21,7 +21,13 @@ private:
     void setAccount(Account *account);
 
 public:
-    explicit MainMenu(vector<Account> &accounts, Account *account) : Menu(accounts), loggedAccount(account) {};
+    explicit MainMenu(vector<Account> &accounts, Account *account) : Menu(accounts), loggedAccount(account) {
+        this->loggedAccount = nullptr;
+    };
+
+    ~MainMenu() override {
+        delete loggedAccount;
+    };
 
     void show() override;
 };

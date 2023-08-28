@@ -20,7 +20,7 @@ public:
 
     Account(string username, string password, string email, string phoneNumber);
 
-    explicit Account(Registration registration);
+    explicit Account(Registration *registration);
 
     ~Account();
 
@@ -43,6 +43,7 @@ public:
     void setBalance(double money);
 
     void setNationality();
+    void setNationality(string newNationality);
 };
 
 #endif

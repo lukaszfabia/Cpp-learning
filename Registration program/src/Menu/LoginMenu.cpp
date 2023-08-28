@@ -4,8 +4,8 @@
 
 #include "headers/Menu/LoginMenu.h"
 #include "headers/Tools/ReadInput.h"
-#include "headers/Processes/Process.h"
 #include "headers/Processes/LoginProcess.h"
+#include "headers/Menu/MainMenu.h"
 
 void LoginMenu::showPrompts() {
     std::string username, password;
@@ -28,10 +28,12 @@ std::string LoginMenu::getData() {
 
 void LoginMenu::show() {
     showPrompts();
-    Process *process = new LoginProcess(accounts, loggedAccount);
+    this->process = new LoginProcess(accounts, loggedAccount);
     if (process->run()) {
         ReadInput::print("Login successful!\n");
-        // call main menu
+        ReadInput::print(loggedAccount->getNationality());
+        //this->mainMenu = new MainMenu(accounts, loggedAccount);
+        //mainMenu->show();
     } else {
         ReadInput::print("Login failed!\n");
     }

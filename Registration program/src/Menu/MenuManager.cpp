@@ -13,43 +13,48 @@
 MenuManager::MenuManager(vector<Account> &accounts) : accounts(accounts) {
     this->registerMenu = nullptr;
     this->loginMenu = nullptr;
+    this->file= new CasualFile();
 }
-
 
 MenuManager::~MenuManager() {
     delete this->registerMenu;
     delete this->loginMenu;
+    delete this->file;
 }
 
-void MenuManager::showRegisterMenu() {
+void MenuManager::buildRegisterMenu() {
     this->registerMenu = new RegisterMenu(accounts);
     this->registerMenu->show();
 }
 
 
-void MenuManager::showLoginMenu() {
+void MenuManager::buildLoginMenu() {
     this->loginMenu = new LoginMenu(accounts);
     this->loginMenu->show();
 }
 
 
 void MenuManager::build() {
-    saveToDataBase();
+    updateDataBase();
 
     bool isRunning = false;
     while (!isRunning) {
         showPrompts();
         switch (getChoice()) {
             case 1:
-                showRegisterMenu();
+                buildRegisterMenu();
                 break;
             case 2:
-                showLoginMenu();
+                buildLoginMenu();
                 break;
             case 3:
-                isRunning = true;
+                for (auto &account : accounts) {
+                    ReadInput::print(account.getUsername());
+                }
+                //isRunning = true;
                 break;
             default:
+                isRunning = true;
                 ReadInput::print("Invalid choice!\n");
                 break;
         }
@@ -67,8 +72,6 @@ void MenuManager::showPrompts() {
     ReadInput::print("Enter your choice: ");
 }
 
-void MenuManager::saveToDataBase() {
-    File *file = new CasualFile();
-    file->load(accounts, "data");
-    delete file;
+void MenuManager::updateDataBase() {
+    this->file->load(accounts, "data");
 }

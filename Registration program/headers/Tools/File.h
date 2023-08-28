@@ -18,7 +18,9 @@ public:
 
     virtual bool load(vector<Account> &accounts, const string &fileName) = 0;
 
-    virtual bool save(Registration &newAccount, const string &fileName, vector<Account> &accounts) = 0;
+    virtual bool save(const string &fileName, vector<Account> &accounts) = 0;
+
+    virtual bool update(const string &fileName, Account  &accounts) = 0;
 };
 
 

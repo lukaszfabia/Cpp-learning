@@ -7,7 +7,7 @@
 
 BinaryFile::~BinaryFile() = default;
 
-
+// needs to be updated cause of the new save file style
 bool BinaryFile::load(vector<Account> &accounts, const string &fileName) {
     const std::string newFileName = fileName + ".bin";
     std::ifstream File(newFileName, std::ios::binary);
@@ -35,7 +35,7 @@ bool BinaryFile::load(vector<Account> &accounts, const string &fileName) {
     }
 }
 
-bool BinaryFile::save(Registration &newAccount, const string &fileName, vector<Account> &accounts) {
+bool BinaryFile::save(const string &fileName, vector<Account> &accounts) {
     const std::string newFileName = fileName + ".bin";
     std::ofstream File(newFileName, std::ios::binary);
 
@@ -49,4 +49,8 @@ bool BinaryFile::save(Registration &newAccount, const string &fileName, vector<A
         ReadInput::print("Error opening file!");
         return false;
     }
+}
+
+bool BinaryFile::update(const string &fileName, Account &accounts) {
+    throw std::runtime_error("Not implemented yet!");
 }

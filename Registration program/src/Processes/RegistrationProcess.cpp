@@ -18,15 +18,15 @@ bool RegistrationProcess::isUnique() {
 }
 
 bool RegistrationProcess::equals(Account account) {
-    return registration.getEmail() == account.getEmail() ||
-           registration.getPhoneNumber() == account.getPhoneNumber() ||
-           registration.getUsername() == account.getUsername();
+    return registration->getEmail() == account.getEmail() ||
+           registration->getPhoneNumber() == account.getPhoneNumber() ||
+           registration->getUsername() == account.getUsername();
 }
 
 bool RegistrationProcess::addNewAccount() {
     if (accounts.empty() || isUnique()) {
-        Account account(registration);
-        accounts.push_back(account);
+        auto *account=new Account(registration);
+        accounts.push_back(*account);
         return saveData();
     } else {
         return false;
@@ -34,7 +34,7 @@ bool RegistrationProcess::addNewAccount() {
 }
 
 bool RegistrationProcess::registerUser() {
-    return registration.authorize() && addNewAccount();
+    return registration->authorize() && addNewAccount();
 }
 
 bool RegistrationProcess::run() {
@@ -43,7 +43,7 @@ bool RegistrationProcess::run() {
 
 bool RegistrationProcess::saveData() {
     File *file = new CasualFile();
-    bool resultTxt = file->save(registration, "data", accounts);
+    bool resultTxt = file->save("data", accounts);
     delete file;
     return resultTxt;
 }

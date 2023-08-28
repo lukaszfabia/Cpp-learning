@@ -9,13 +9,21 @@
 #include "File.h"
 
 class CasualFile: public File {
+private:
+    Account *account;
 public:
-
-    ~CasualFile() override;
+    CasualFile(){
+        this->account=nullptr;
+    }
+    ~CasualFile() override {
+        delete this->account;
+    }
 
     bool load(vector<Account> &accounts, const string &fileName) override;
 
-    bool save(Registration &data, const string &fileName, vector<Account> &accounts) override;
+    bool save(const string &fileName, vector<Account> &accounts) override;
+
+    bool update(const string &fileName, Account  &accounts) override;
 };
 
 

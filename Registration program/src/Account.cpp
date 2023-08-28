@@ -10,6 +10,7 @@ Account::Account() {
     this->password = "";
     this->email = "";
     this->phoneNumber = "";
+    this->nationality = "NULL";
     this->balance = 0;
 }
 
@@ -18,14 +19,16 @@ Account::Account(string username, string password, string email, string phoneNum
     this->password = std::move(password);
     this->email = std::move(email);
     this->phoneNumber = std::move(phoneNumber);
+    this->nationality = "NULL";
     this->balance = 0;
 }
 
-Account::Account(Registration registration) {
-    this->username = registration.getUsername();
-    this->password = registration.getPassword();
-    this->email = registration.getEmail();
-    this->phoneNumber = registration.getPhoneNumber();
+Account::Account(Registration *registration) {
+    this->username = registration->getUsername();
+    this->password = registration->getPassword();
+    this->email = registration->getEmail();
+    this->phoneNumber = registration->getPhoneNumber();
+    this->nationality = "NULL";
     this->balance = 0;
 }
 
@@ -70,5 +73,9 @@ void Account::setNationality() {
     ReadInput::print("Enter new nationality: ");
 
     this->nationality = ReadInput::readString(1);
+}
+
+void Account::setNationality(string newNationality) {
+    this->nationality = std::move(newNationality);
 }
 

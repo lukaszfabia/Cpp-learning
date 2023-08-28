@@ -7,20 +7,21 @@
 
 #include "Menu.h"
 #include "headers/Account.h"
+#include "headers/Tools/CasualFile.h"
 #include <vector>
 
 // class above menu to build all menus
 class MenuManager {
 private:
+    CasualFile *file;
     Menu *registerMenu;
     Menu *loginMenu;
     vector<Account> &accounts;
-    void showRegisterMenu();
-    void showMainMenu();
-    void showLoginMenu();
+    void buildRegisterMenu();
+    void buildLoginMenu();
     static int getChoice();
     static void showPrompts();
-    void saveToDataBase();
+    void updateDataBase();
 public:
     explicit MenuManager(vector<Account> &accounts);
     ~MenuManager();

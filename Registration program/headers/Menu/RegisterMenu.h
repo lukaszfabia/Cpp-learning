@@ -10,7 +10,7 @@
 
 class RegisterMenu : public Menu {
 private:
-    Registration *newRegistration = nullptr;
+    Registration *newRegistration;
 
     void showPrompts() override;
 
@@ -21,7 +21,14 @@ private:
     void setRegistration(Registration *registration);
 
 public:
-    explicit RegisterMenu(vector<Account> &accounts) : Menu(accounts) {};
+    explicit RegisterMenu(vector<Account> &accounts) : Menu(accounts) {
+        this->newRegistration = nullptr;
+    };
+
+    ~RegisterMenu() override {
+        delete newRegistration;
+    };
+
     void show() override;
 };
 

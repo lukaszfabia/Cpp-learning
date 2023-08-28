@@ -16,7 +16,7 @@ protected:
     virtual int getChoice() = 0;
     virtual std::string getData() = 0;
 public:
-    explicit Menu(vector<Account> &accounts) : accounts(accounts) {};
+    explicit Menu(std::vector<Account> &accounts) : accounts(accounts) {};
     virtual ~Menu() = default;
     virtual void show() = 0;
 };
