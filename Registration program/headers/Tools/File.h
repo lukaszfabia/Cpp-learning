@@ -6,6 +6,7 @@
 #define CPP_LEARNING_FILE_H
 
 #include <fstream>
+#include <utility>
 #include <vector>
 #include "headers/Registration.h"
 #include "headers/Account.h"
@@ -13,14 +14,20 @@
 using namespace std;
 
 class File {
+protected:
+    vector<Account> &accounts;
+    std::string fileName;
+
 public:
+    explicit File(vector<Account> &accounts, string fileName) : accounts(accounts), fileName(std::move(fileName)) {};
+
     virtual ~File() = default;
 
-    virtual bool load(vector<Account> &accounts, const string &fileName) = 0;
+    virtual bool load() = 0;
 
-    virtual bool save(const string &fileName, vector<Account> &accounts) = 0;
+    virtual bool save() = 0;
 
-    virtual bool update(const string &fileName, Account  &accounts) = 0;
+    virtual bool update(Account *account) = 0;
 };
 
 

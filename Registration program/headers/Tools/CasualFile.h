@@ -10,20 +10,23 @@
 
 class CasualFile: public File {
 private:
-    Account *account;
+    Account *helpAccount;
+
+    static bool conditionToRemove(Account *account, Account *helpAccount);
 public:
-    CasualFile(){
-        this->account=nullptr;
-    }
+    explicit CasualFile(vector<Account> &accounts, string fileName) : File(accounts, std::move(fileName)) {
+        this->helpAccount = nullptr;
+    };
+
     ~CasualFile() override {
-        delete this->account;
+        delete helpAccount;
     }
 
-    bool load(vector<Account> &accounts, const string &fileName) override;
+    bool load() override;
 
-    bool save(const string &fileName, vector<Account> &accounts) override;
+    bool save() override;
 
-    bool update(const string &fileName, Account  &accounts) override;
+    bool update(Account *account) override;
 };
 
 

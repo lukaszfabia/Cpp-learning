@@ -1,35 +1,35 @@
-//
-// Created by ufabi on 27.08.2023.
-//
-
 #ifndef CPP_LEARNING_MAIN_H
 #define CPP_LEARNING_MAIN_H
 
 
 #include "Menu.h"
+#include "headers/Tools/File.h"
+#include "headers/Tools/CasualFile.h"
+#include <vector>
 
-class MainMenu : public Menu {
+class MainMenu {
 private:
-    Account *loggedAccount;
+    Account *actualAccount;
+    vector<Account> &accounts;
+    File *file;
 
-    void showPrompts() override;
+    void showPrompts();
 
-    int getChoice() override;
+    static int getChoice();
 
-    std::string getData() override;
-
-    void setAccount(Account *account);
 
 public:
-    explicit MainMenu(vector<Account> &accounts, Account *account) : Menu(accounts), loggedAccount(account) {
-        this->loggedAccount = nullptr;
+    explicit MainMenu(vector<Account> &accounts, Account *account) : accounts(accounts) {
+        this->actualAccount = account;
+        this->file = new CasualFile(accounts, "data");
     };
 
-    ~MainMenu() override {
-        delete loggedAccount;
+    ~MainMenu() {
+        delete actualAccount;
+        delete file;
     };
 
-    void show() override;
+    void buildMenu();
 };
 
 

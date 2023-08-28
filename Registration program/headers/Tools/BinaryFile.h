@@ -10,13 +10,15 @@
 
 class BinaryFile: public File {
 public:
-    ~BinaryFile() override;
+    explicit BinaryFile(vector<Account> &accounts, string fileName) : File(accounts, std::move(fileName)) {};
 
-    bool load(vector<Account> &accounts, const string &fileName) override;
+    ~BinaryFile() override = default;
 
-    bool save(const string &fileName, vector<Account> &accounts) override;
+    bool load() override;
 
-    bool update(const string &fileName, Account  &accounts) override;
+    bool save() override;
+
+    bool update(Account  *accounts) override;
 };
 
 

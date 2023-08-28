@@ -4,8 +4,6 @@
 
 #include "headers/Menu/MenuManager.h"
 #include "headers/Menu/RegisterMenu.h"
-#include "headers/Tools/File.h"
-#include "headers/Tools/CasualFile.h"
 #include "headers/Tools/ReadInput.h"
 #include "headers/Processes/Process.h"
 #include "headers/Menu/LoginMenu.h"
@@ -13,7 +11,7 @@
 MenuManager::MenuManager(vector<Account> &accounts) : accounts(accounts) {
     this->registerMenu = nullptr;
     this->loginMenu = nullptr;
-    this->file= new CasualFile();
+    this->file= new CasualFile(accounts, "data");
 }
 
 MenuManager::~MenuManager() {
@@ -69,5 +67,5 @@ void MenuManager::showPrompts() {
 }
 
 void MenuManager::updateDataBase() {
-    this->file->load(accounts, "data");
+    this->file->load();
 }

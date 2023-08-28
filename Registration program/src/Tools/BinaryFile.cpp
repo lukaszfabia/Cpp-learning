@@ -5,10 +5,9 @@
 #include "headers/Tools/BinaryFile.h"
 #include "headers/Tools/ReadInput.h"
 
-BinaryFile::~BinaryFile() = default;
 
 // needs to be updated cause of the new save file style
-bool BinaryFile::load(vector<Account> &accounts, const string &fileName) {
+bool BinaryFile::load() {
     const std::string newFileName = fileName + ".bin";
     std::ifstream File(newFileName, std::ios::binary);
 
@@ -35,7 +34,7 @@ bool BinaryFile::load(vector<Account> &accounts, const string &fileName) {
     }
 }
 
-bool BinaryFile::save(const string &fileName, vector<Account> &accounts) {
+bool BinaryFile::save() {
     const std::string newFileName = fileName + ".bin";
     std::ofstream File(newFileName, std::ios::binary);
 
@@ -51,6 +50,6 @@ bool BinaryFile::save(const string &fileName, vector<Account> &accounts) {
     }
 }
 
-bool BinaryFile::update(const string &fileName, Account &accounts) {
+bool BinaryFile::update(Account *accounts) {
     throw std::runtime_error("Not implemented yet!");
 }

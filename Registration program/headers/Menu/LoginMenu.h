@@ -8,6 +8,7 @@
 
 #include "Menu.h"
 #include "headers/Processes/Process.h"
+#include "MainMenu.h"
 
 class LoginMenu : public Menu {
 private:
@@ -15,7 +16,7 @@ private:
 
     Process *process;
 
-    Menu *mainMenu;
+    MainMenu *mainMenu;
 
     void showPrompts() override;
 
@@ -23,7 +24,7 @@ private:
 
     std::string getData() override;
 
-    void setAccount(Account *account);
+    void setAccount(const std::string& username, const std::string& password);
 
 public:
     explicit LoginMenu(std::vector<Account> &accounts) : Menu(accounts) {

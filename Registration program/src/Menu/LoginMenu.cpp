@@ -1,11 +1,6 @@
-//
-// Created by ufabi on 27.08.2023.
-//
-
 #include "headers/Menu/LoginMenu.h"
 #include "headers/Tools/ReadInput.h"
 #include "headers/Processes/LoginProcess.h"
-#include "headers/Menu/MainMenu.h"
 
 void LoginMenu::showPrompts() {
     std::string username, password;
@@ -14,8 +9,7 @@ void LoginMenu::showPrompts() {
     ReadInput::print("Enter password: ");
     password = getData();
 
-    auto *account = new Account(username, password, "", "");
-    setAccount(account);
+    setAccount(username, password);
 }
 
 int LoginMenu::getChoice() {
@@ -28,19 +22,26 @@ std::string LoginMenu::getData() {
 
 void LoginMenu::show() {
     showPrompts();
-    this->process = new LoginProcess(accounts, loggedAccount);
     if (process->run()) {
         ReadInput::print("Login successful!\n");
-        ReadInput::print(loggedAccount->getNationality());
-        //this->mainMenu = new MainMenu(accounts, loggedAccount);
-        //mainMenu->show();
+        mainMenu->buildMenu();
     } else {
         ReadInput::print("Login failed!\n");
     }
 }
 
-void LoginMenu::setAccount(Account *account) {
-    this->loggedAccount = account;
+void LoginMenu::setAccount(const std::string& username, const std::string& password) {
+    for (auto &item: accounts) {
+        if (item.getUsername() == username && item.getPassword() == password) {
+            auto *account = new Account(item.getUsername(), item.getPassword(), item.getEmail(), item.getPhoneNumber());
+            account->setNationality(item.getNationality());
+            account->setBalance(item.getBalance());
+            this->loggedAccount = account;
+            this->process = new LoginProcess(accounts, loggedAccount);
+            this->mainMenu = new MainMenu(accounts, loggedAccount);
+            return;
+        }
+    }
 }
 
 

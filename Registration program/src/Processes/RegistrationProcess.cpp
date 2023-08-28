@@ -42,8 +42,8 @@ bool RegistrationProcess::run() {
 }
 
 bool RegistrationProcess::saveData() {
-    File *file = new CasualFile();
-    bool resultTxt = file->save("data", accounts);
+    File *file = new CasualFile(accounts, "data");
+    bool resultTxt = file->save();
     delete file;
     return resultTxt;
 }
