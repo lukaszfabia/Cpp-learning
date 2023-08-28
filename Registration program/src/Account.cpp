@@ -3,8 +3,6 @@
 #include <string>
 #include <utility>
 
-using namespace std;
-
 Account::Account() {
     this->username = "";
     this->password = "";
@@ -14,7 +12,7 @@ Account::Account() {
     this->balance = 0;
 }
 
-Account::Account(string username, string password, string email, string phoneNumber) {
+Account::Account(std::string username, std::string password, std::string email, std::string phoneNumber) {
     this->username = std::move(username);
     this->password = std::move(password);
     this->email = std::move(email);
@@ -32,26 +30,25 @@ Account::Account(Registration *registration) {
     this->balance = 0;
 }
 
-Account::~Account()
-= default;
+Account::~Account() = default;
 
-string Account::getUsername() {
+std::string Account::getUsername() {
     return this->username;
 }
 
-string Account::getEmail() {
+std::string Account::getEmail() {
     return this->email;
 }
 
-string Account::getPhoneNumber() {
+std::string Account::getPhoneNumber() {
     return this->phoneNumber;
 }
 
-string Account::getPassword() {
+std::string Account::getPassword() {
     return this->password;
 }
 
-string Account::getNationality() {
+std::string Account::getNationality() {
     return this->nationality;
 }
 
@@ -63,19 +60,11 @@ void Account::setBalance(double money) {
     this->balance = money;
 }
 
-string Account::information() {
-    return "\nLogin: " + username + "\nYour balance: " + to_string(getBalance()) + "\nNationality: " +
-           getNationality() + "\n";
-}
-
 void Account::setNationality() {
-    string new_nationality;
     ReadInput::print("Enter new nationality: ");
-
     this->nationality = ReadInput::readString(1);
 }
 
-void Account::setNationality(string newNationality) {
+void Account::setNationality(std::string newNationality) {
     this->nationality = std::move(newNationality);
 }
-

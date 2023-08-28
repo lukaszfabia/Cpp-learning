@@ -48,13 +48,9 @@ void MenuManager::build() {
                 buildLoginMenu();
                 break;
             case 3:
-                for (auto &account : accounts) {
-                    ReadInput::print(account.getUsername());
-                }
-                //isRunning = true;
+                isRunning = true;
                 break;
             default:
-                isRunning = true;
                 ReadInput::print("Invalid choice!\n");
                 break;
         }

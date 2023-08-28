@@ -37,8 +37,6 @@ public:
 
     [[nodiscard]] double getBalance() const;
 
-    string information();
-
     //setters
     void setBalance(double money);
 
