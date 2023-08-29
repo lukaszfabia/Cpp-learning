@@ -1,7 +1,3 @@
-//
-// Created by ufabi on 25.08.2023.
-//
-
 #ifndef CPP_LEARNING_READINPUT_H
 #define CPP_LEARNING_READINPUT_H
 

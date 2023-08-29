@@ -13,6 +13,24 @@ add_executable(cpp_learning
         "headers/Registration.h"
         "src/System.cpp"
         "headers/System.h"
-        "src/Tools/Validator.cpp"
-        "headers/Tools/Validator.h" src/Tools/ReadInput.cpp "headers/Tools/ReadInput.h" "headers/Tools/ReadInput.h" "headers/Tools/File.h" "src/Tools/BinaryFile.cpp" "headers/Tools/BinaryFile.h" "headers/Tools/BinaryFile.h" "src/Tools/CasualFile.cpp" "headers/Tools/CasualFile.h" src/Processes/RegistrationProcess.cpp "headers/Processes/RegistrationProcess.h" src/Processes/Process.cpp "headers/Processes/Process.h" src/Processes/LoginProcess.cpp "headers/Processes/LoginProcess.h" "headers/Processes/LoginProcess.h" src/Menu/MainMenu.cpp src/Menu/RegisterMenu.cpp src/Menu/MenuManager.cpp src/Menu/LoginMenu.cpp headers/Menu/LoginMenu.h)
+        "headers/Tools/File/File.h"
+        "src/Tools/File/BinaryFile.cpp"
+        "headers/Tools/File/BinaryFile.h"
+        "headers/Tools/File/BinaryFile.h"
+        "src/Tools/File/CasualFile.cpp"
+        "headers/Tools/File/CasualFile.h"
+        src/Processes/RegistrationProcess.cpp
+        "headers/Processes/RegistrationProcess.h"
+        src/Processes/Process.cpp
+        "headers/Processes/Process.h"
+        src/Processes/LoginProcess.cpp
+        "headers/Processes/LoginProcess.h"
+        "headers/Processes/LoginProcess.h"
+        src/Menu/MainMenu.cpp
+        src/Menu/RegisterMenu.cpp
+        src/Menu/MenuManager.cpp
+        src/Menu/LoginMenu.cpp
+        headers/Menu/LoginMenu.h
+        "headers/Tools/System and control/ConsoleControl.h"
+        "src/Tools/System and control/ConsoleControl.cpp" "src/Tools/System and control/ReadInput.cpp" "src/Tools/System and control/Validator.cpp")
 

@@ -3,14 +3,14 @@
 //
 
 #include "headers/Menu/RegisterMenu.h"
-#include "headers/Tools/ReadInput.h"
+#include "headers/Tools/System and control/ReadInput.h"
 #include "headers/Processes/Process.h"
 #include "headers/Processes/RegistrationProcess.h"
 #include <string>
 
 void RegisterMenu::showPrompts() {
     std::string username, password, email, phoneNumber;
-    ReadInput::print("Enter username: ");
+    ReadInput::print("Registration\nEnter username: ");
     username = getData();
     ReadInput::print("Enter password: ");
     password = getData();
@@ -31,7 +31,7 @@ void RegisterMenu::show() {
     showPrompts();
     Process *process = new RegistrationProcess(accounts, newRegistration);
     if (process->run()) {
-        ReadInput::print("Registration successful!\n");
+        ReadInput::print("Registration successful!\nNow you can login.\n");
     } else {
         ReadInput::print("Registration failed!\n");
     }

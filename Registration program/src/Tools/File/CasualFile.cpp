@@ -3,8 +3,8 @@
 //
 
 #include <algorithm>
-#include "headers/Tools/CasualFile.h"
-#include "headers/Tools/ReadInput.h"
+#include "headers/Tools/File/CasualFile.h"
+#include "headers/Tools/System and control/ReadInput.h"
 
 bool CasualFile::load() {
     string newFileName = fileName + ".txt";

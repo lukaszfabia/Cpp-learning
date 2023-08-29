@@ -2,8 +2,8 @@
 // Created by ufabi on 26.08.2023.
 //
 
-#include "headers/Tools/BinaryFile.h"
-#include "headers/Tools/ReadInput.h"
+#include "headers/Tools/File/BinaryFile.h"
+#include "headers/Tools/System and control/ReadInput.h"
 
 
 // needs to be updated cause of the new save file style

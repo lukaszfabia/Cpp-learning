@@ -5,9 +5,9 @@
 #include <vector>
 #include <algorithm>
 #include "headers/Processes/RegistrationProcess.h"
-#include "headers/Tools/ReadInput.h"
-#include "headers/Tools/File.h"
-#include "headers/Tools/CasualFile.h"
+#include "headers/Tools/System and control/ReadInput.h"
+#include "headers/Tools/File/File.h"
+#include "headers/Tools/File/CasualFile.h"
 
 
 bool RegistrationProcess::isUnique() {

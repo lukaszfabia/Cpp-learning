@@ -4,14 +4,16 @@
 
 #include "headers/Menu/MenuManager.h"
 #include "headers/Menu/RegisterMenu.h"
-#include "headers/Tools/ReadInput.h"
+#include "headers/Tools/System and control/ReadInput.h"
 #include "headers/Processes/Process.h"
 #include "headers/Menu/LoginMenu.h"
+#include "headers/Tools/System and control/ConsoleControl.h"
+
 
 MenuManager::MenuManager(vector<Account> &accounts) : accounts(accounts) {
     this->registerMenu = nullptr;
     this->loginMenu = nullptr;
-    this->file= new CasualFile(accounts, "data");
+    this->file = new CasualFile(accounts, "data");
 }
 
 MenuManager::~MenuManager() {
@@ -36,9 +38,12 @@ void MenuManager::build() {
     updateDataBase();
 
     bool isRunning = false;
+    int choice;
     while (!isRunning) {
         showPrompts();
-        switch (getChoice()) {
+        choice = getChoice();
+        ConsoleControl::clearConsole();
+        switch (choice) {
             case 1:
                 buildRegisterMenu();
                 break;
@@ -60,7 +65,9 @@ int MenuManager::getChoice() {
 }
 
 void MenuManager::showPrompts() {
-    ReadInput::print("\n1. Register\n");
+    ConsoleControl::sleep(2);
+    ConsoleControl::clearConsole();
+    ReadInput::print("1. Register\n");
     ReadInput::print("2. Login\n");
     ReadInput::print("3. Exit\n");
     ReadInput::print("Enter your choice: ");
