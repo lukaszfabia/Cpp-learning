@@ -1,7 +1,3 @@
-//
-// Created by ufabi on 27.08.2023.
-//
-
 #ifndef CPP_LEARNING_REGISTRATIONPROCESS_H
 #define CPP_LEARNING_REGISTRATIONPROCESS_H
 
@@ -15,7 +11,6 @@ private:
     // variables
     Registration *registration=nullptr;
 
-    // static methods
     bool equals(Account account);
 
     // methods
@@ -26,6 +21,8 @@ private:
     bool registerUser();
 
     bool saveData();
+
+    bool addUniqueID();
 
 public:
     explicit RegistrationProcess(vector<Account> &accounts, Registration *registration) : Process(accounts),

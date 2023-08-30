@@ -1,5 +1,6 @@
 #include "headers/Menu/MainMenu.h"
 #include "headers/Tools/System and control/ReadInput.h"
+#include "headers/Tools/System and control/ConsoleControl.h"
 
 void MainMenu::buildMenu() {
     welcomeMessage();
@@ -10,6 +11,7 @@ int MainMenu::getChoice() {
 }
 
 void MainMenu::welcomeMessage() {
+    ConsoleControl::clearConsole();
     ReadInput::print("Welcome " + actualAccount->getUsername() + "!\n");
     ReadInput::print("1. Show my information\n");
     ReadInput::print("2. Edit my information\n");

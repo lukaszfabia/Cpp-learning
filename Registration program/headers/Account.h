@@ -14,11 +14,12 @@ private:
     string phoneNumber;
     string nationality;
     double balance;
+    int id;
 
 public:
     Account();
 
-    Account(string username, string password, string email, string phoneNumber);
+    Account(string username, string password, string email, string phoneNumber, string nationality, double balance, int id);
 
     explicit Account(Registration *registration);
 
@@ -35,12 +36,12 @@ public:
 
     string getNationality();
 
+    [[nodiscard]] int getID() const;
+
     [[nodiscard]] double getBalance() const;
 
     //setters
     void setBalance(double money);
-
-    void setNationality();
 
     void setNationality(string newNationality);
 
@@ -51,6 +52,8 @@ public:
     void setPhoneNumber(string newPhoneNumber);
 
     void setEmail(string newMail);
+
+    void setID(int new_id);
 
     string information();
 };

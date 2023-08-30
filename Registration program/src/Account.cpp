@@ -9,15 +9,18 @@ Account::Account() {
     this->phoneNumber = "";
     this->nationality = "NULL";
     this->balance = 0;
+    this->id = 0;
 }
 
-Account::Account(std::string username, std::string password, std::string email, std::string phoneNumber) {
+Account::Account(std::string username, std::string password, std::string email, std::string phoneNumber,
+                 std::string nationality, double balance, int id) {
     this->username = std::move(username);
     this->password = std::move(password);
     this->email = std::move(email);
     this->phoneNumber = std::move(phoneNumber);
-    this->nationality = "NULL";
-    this->balance = 0;
+    this->nationality = std::move(nationality);
+    this->balance = balance;
+    this->id = id;
 }
 
 Account::Account(Registration *registration) {
@@ -27,6 +30,7 @@ Account::Account(Registration *registration) {
     this->phoneNumber = registration->getPhoneNumber();
     this->nationality = "NULL";
     this->balance = 0;
+    this->id = registration->getID();
 }
 
 Account::~Account() = default;
@@ -59,6 +63,10 @@ void Account::setBalance(double money) {
     this->balance = money;
 }
 
+int Account::getID() const {
+    return this->id;
+}
+
 void Account::setNationality(std::string newNationality) {
     this->nationality = std::move(newNationality);
 }
@@ -86,4 +94,8 @@ void Account::setEmail(std::string newMail) {
 
 void Account::setPhoneNumber(std::string newPhoneNumber) {
     this->phoneNumber = std::move(newPhoneNumber);
+}
+
+void Account::setID(int new_id) {
+    this->id = new_id;
 }

@@ -11,11 +11,11 @@ bool CasualFile::load() {
     fstream File;
     File.open(newFileName, ios::in);
     if (File.is_open()) {
-        string username, password, email, phoneNumber, nationality, balance;
-        while (File >> username >> password >> email >> phoneNumber >> nationality >> balance) {
-            this->helpAccount = new Account(username, password, email, phoneNumber);
-            this->helpAccount->setNationality(nationality);
-            this->helpAccount->setBalance(stod(balance));
+        string username, password, email, phoneNumber, nationality;
+        basic_string<char> balance;
+        basic_string<char> id;
+        while (File >> id >> username >> password >> email >> phoneNumber >> nationality >> balance) {
+            this->helpAccount = new Account(username, password, email, phoneNumber, nationality, std::stod(balance), std::stoi(id));
             accounts.push_back(*this->helpAccount);
         }
         File.close();
@@ -32,6 +32,7 @@ bool CasualFile::save() {
     File.open(newFileName, ios::out | ios::trunc);
     if (File.is_open()) {
         for (Account &item: accounts) {
+            File << item.getID() << " ";
             File << item.getUsername() << " ";
             File << item.getPassword() << " ";
             File << item.getEmail() << " ";
@@ -57,7 +58,5 @@ bool CasualFile::update(Account *account) {
 }
 
 bool CasualFile::conditionToRemove(Account *account, Account *helpAccount) {
-    return account->getUsername() == helpAccount->getUsername() &&
-           account->getPassword() == helpAccount->getPassword() && account->getEmail() == helpAccount->getEmail() &&
-           account->getPhoneNumber() == helpAccount->getPhoneNumber();
+    return account->getID() == helpAccount->getID();
 }

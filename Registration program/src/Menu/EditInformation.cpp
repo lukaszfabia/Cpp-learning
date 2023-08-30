@@ -1,20 +1,18 @@
 #include "headers/Menu/EditInformation.h"
 #include "headers/Tools/System and control/ReadInput.h"
-
-void prompt() {
-    ReadInput::print("What do you want to edit:\n");
-    ReadInput::print("1. Edit username\n");
-    ReadInput::print("2. Edit password\n");
-    ReadInput::print("3. Edit email\n");
-    ReadInput::print("4. Edit phone number\n");
-    ReadInput::print("5. Edit nationality\n");
-    ReadInput::print("6. Main menu\n");
-}
+#include "headers/Tools/System and control/ConsoleControl.h"
 
 void EditInformation::run() {
-    prompt();
+    ConsoleControl::clearConsole();
     int choice = 0;
     while (choice != 6) {
+        ReadInput::print("What do you want to edit:\n");
+        ReadInput::print("1. Edit username\n");
+        ReadInput::print("2. Edit password\n");
+        ReadInput::print("3. Edit email\n");
+        ReadInput::print("4. Edit phone number\n");
+        ReadInput::print("5. Edit nationality\n");
+        ReadInput::print("6. Main menu\n");
         ReadInput::print("Enter you choice: ");
         choice = ReadInput::readInt(1);
         switch (choice) {
@@ -35,6 +33,7 @@ void EditInformation::run() {
                 break;
             case 6:
                 // exit
+                ConsoleControl::clearConsole();
                 break;
             default:
                 ReadInput::print("Wrong number!\n");
@@ -48,8 +47,8 @@ bool EditInformation::editUsername() {
         ReadInput::print("Insert new username: ");
         username = ReadInput::readString(1);
         if (!validator->isUsernameValid(username)) {
-            account->setUsername(username);
-            return file->update(account);
+            actualAccount->setUsername(username);
+            return file->update(actualAccount);
         } else {
             ReadInput::print("Invalid username!\n");
         }
@@ -62,8 +61,8 @@ bool EditInformation::editPassword() {
         ReadInput::print("Insert new password: ");
         password = ReadInput::readString(1);
         if (!validator->isPasswordValid(password)) {
-            account->setPassword(password);
-            return file->update(account);
+            actualAccount->setPassword(password);
+            return file->update(actualAccount);
         } else {
             ReadInput::print("Invalid password!\n");
         }
@@ -76,8 +75,8 @@ bool EditInformation::editEmail() {
         ReadInput::print("Insert new email: ");
         newMail = ReadInput::readString(1);
         if (!validator->isEmailValid(newMail)) {
-            account->setEmail(newMail);
-            return file->update(account);
+            actualAccount->setEmail(newMail);
+            return file->update(actualAccount);
         } else {
             ReadInput::print("Invalid email!\n");
         }
@@ -86,9 +85,9 @@ bool EditInformation::editEmail() {
 
 bool EditInformation::editNationality() {
     std::string newNationality = ReadInput::readString(1);
-    account->setNationality(newNationality);
-    bool isEdited = file->update(account);
-    ReadInput::print(account->getNationality() + " has been set!\n");
+    actualAccount->setNationality(newNationality);
+    bool isEdited = file->update(actualAccount);
+    ReadInput::print(actualAccount->getNationality() + " has been set!\n");
     return isEdited;
 }
 
@@ -98,8 +97,8 @@ bool EditInformation::editPhoneNumber() {
         ReadInput::print("Insert new phone number: ");
         newPhoneNumber = ReadInput::readString(1);
         if (!validator->isPhoneNumberValid(newPhoneNumber)) {
-            account->setPhoneNumber(newPhoneNumber);
-            return file->update(account);
+            actualAccount->setPhoneNumber(newPhoneNumber);
+            return file->update(actualAccount);
         } else {
             ReadInput::print("Invalid phone number!\n");
         }

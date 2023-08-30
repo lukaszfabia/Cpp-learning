@@ -30,12 +30,12 @@ void LoginMenu::show() {
     }
 }
 
-void LoginMenu::setAccount(const std::string& username, const std::string& password) {
+void LoginMenu::setAccount(const std::string &username, const std::string &password) {
     for (auto &item: accounts) {
         if (item.getUsername() == username && item.getPassword() == password) {
-            auto *account = new Account(item.getUsername(), item.getPassword(), item.getEmail(), item.getPhoneNumber());
-            account->setNationality(item.getNationality());
-            account->setBalance(item.getBalance());
+            auto *account = new Account(item.getUsername(), item.getPassword(),
+                                        item.getEmail(), item.getPhoneNumber(), item.getNationality(),
+                                        item.getBalance(), item.getID());
             this->loggedAccount = account;
             this->process = new LoginProcess(accounts, loggedAccount);
             this->mainMenu = new MainMenu(accounts, loggedAccount);

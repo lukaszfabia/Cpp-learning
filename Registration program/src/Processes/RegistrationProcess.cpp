@@ -25,6 +25,7 @@ bool RegistrationProcess::equals(Account account) {
 
 bool RegistrationProcess::addNewAccount() {
     if (accounts.empty() || isUnique()) {
+        addUniqueID();
         auto *account=new Account(registration);
         accounts.push_back(*account);
         return saveData();
@@ -46,5 +47,17 @@ bool RegistrationProcess::saveData() {
     bool resultTxt = file->save();
     delete file;
     return resultTxt;
+}
+
+bool RegistrationProcess::addUniqueID() {
+    int id=1;
+    for (auto &account : accounts){
+        if (account.getID()==registration->getID()){
+            registration->setID(id);
+            return true;
+        }
+        id++;
+    }
+    return false;
 }
 

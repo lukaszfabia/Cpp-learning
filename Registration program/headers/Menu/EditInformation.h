@@ -9,7 +9,7 @@
 
 class EditInformation {
 private:
-    Account *account;
+    Account *actualAccount = nullptr;
     vector<Account> &accounts;
     File *file;
     Validator *validator;
@@ -25,14 +25,14 @@ private:
     bool editNationality();
 
 public:
-    EditInformation(Account *account, vector<Account> &accounts) : accounts(accounts) {
-        this->account = account;
+    EditInformation(Account *account, vector<Account> &accounts) : accounts(accounts), actualAccount(account) {
+        this->actualAccount = account;
         this->file = new CasualFile(accounts, "data");
         this->validator = new Validator();
     };
 
     ~EditInformation() {
-        delete account;
+        delete actualAccount;
         delete validator;
         delete file;
     }

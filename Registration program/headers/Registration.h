@@ -12,6 +12,7 @@ private:
     string password;
     string email;
     string phoneNumber;
+    int id;
 
 protected:
     Validator validator;
@@ -31,6 +32,9 @@ public:
 
     bool authorize();
 
+    void setID(int new_id);
+
+    int getID() const;
 };
 
 #endif

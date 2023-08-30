@@ -10,6 +10,7 @@ Registration::Registration(const string &username, const string &password, const
     this->email = email;
     this->phoneNumber = phoneNumber;
     this->validator = Validator(username, password, email, phoneNumber);
+    this->id=0;
 }
 
 Registration::~Registration()
@@ -33,4 +34,12 @@ string Registration::getPassword() {
 
 bool Registration::authorize() {
     return !validator.isValid();
+}
+
+int Registration::getID() const {
+    return this->id;
+}
+
+void Registration::setID(int new_id) {
+    this->id = new_id;
 }
