@@ -9,18 +9,19 @@ Account::Account() {
     this->phoneNumber = "";
     this->nationality = "NULL";
     this->balance = 0;
-    this->id = 0;
+    this->hash = 0;
 }
 
 Account::Account(std::string username, std::string password, std::string email, std::string phoneNumber,
-                 std::string nationality, double balance, int id) {
+                 std::string nationality, double balance, size_t hash) {
     this->username = std::move(username);
     this->password = std::move(password);
     this->email = std::move(email);
     this->phoneNumber = std::move(phoneNumber);
     this->nationality = std::move(nationality);
     this->balance = balance;
-    this->id = id;
+    this->hash = hash;
+
 }
 
 Account::Account(Registration *registration) {
@@ -30,7 +31,7 @@ Account::Account(Registration *registration) {
     this->phoneNumber = registration->getPhoneNumber();
     this->nationality = "NULL";
     this->balance = 0;
-    this->id = registration->getID();
+    this->hash = registration->getHashcode();
 }
 
 Account::~Account() = default;
@@ -63,21 +64,19 @@ void Account::setBalance(double money) {
     this->balance = money;
 }
 
-int Account::getID() const {
-    return this->id;
-}
-
 void Account::setNationality(std::string newNationality) {
-    this->nationality = std::move(newNationality);
+    if (newNationality!=nationality){
+        this->nationality = std::move(newNationality);
+    }
 }
 
 std::string Account::information() {
-    return "\nUsername: " + getUsername() +
+    return "Username: " + getUsername() +
            "\nEmail: " + getEmail() +
            "\nPhone number: " + getPhoneNumber() +
            "\nNationality: " + getNationality() +
            "\nBalance: " + to_string(getBalance()) +
-           "\n";
+           "\n--------------------------\n";
 }
 
 void Account::setUsername(std::string newUsername) {
@@ -96,6 +95,6 @@ void Account::setPhoneNumber(std::string newPhoneNumber) {
     this->phoneNumber = std::move(newPhoneNumber);
 }
 
-void Account::setID(int new_id) {
-    this->id = new_id;
+unsigned long long int Account::getHashcode() const {
+    return this->hash;
 }

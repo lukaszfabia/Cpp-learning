@@ -14,12 +14,13 @@ private:
     string phoneNumber;
     string nationality;
     double balance;
-    int id;
+    size_t hash;
 
 public:
     Account();
 
-    Account(string username, string password, string email, string phoneNumber, string nationality, double balance, int id);
+    Account(string username, string password, string email, string phoneNumber, string nationality, double balance,
+            size_t hash);
 
     explicit Account(Registration *registration);
 
@@ -36,7 +37,7 @@ public:
 
     string getNationality();
 
-    [[nodiscard]] int getID() const;
+    [[nodiscard]] unsigned long long int getHashcode() const;
 
     [[nodiscard]] double getBalance() const;
 
@@ -53,9 +54,8 @@ public:
 
     void setEmail(string newMail);
 
-    void setID(int new_id);
-
     string information();
+
 };
 
 #endif

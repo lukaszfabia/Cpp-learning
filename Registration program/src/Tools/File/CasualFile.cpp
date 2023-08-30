@@ -13,9 +13,9 @@ bool CasualFile::load() {
     if (File.is_open()) {
         string username, password, email, phoneNumber, nationality;
         basic_string<char> balance;
-        basic_string<char> id;
-        while (File >> id >> username >> password >> email >> phoneNumber >> nationality >> balance) {
-            this->helpAccount = new Account(username, password, email, phoneNumber, nationality, std::stod(balance), std::stoi(id));
+        string hashcode;
+        while (File >> hashcode >> username >> password >> email >> phoneNumber >> nationality >> balance) {
+            this->helpAccount = new Account(username, password, email, phoneNumber, nationality, std::stod(balance), std::stoull(hashcode));
             accounts.push_back(*this->helpAccount);
         }
         File.close();
@@ -32,7 +32,7 @@ bool CasualFile::save() {
     File.open(newFileName, ios::out | ios::trunc);
     if (File.is_open()) {
         for (Account &item: accounts) {
-            File << item.getID() << " ";
+            File << item.getHashcode() << " ";
             File << item.getUsername() << " ";
             File << item.getPassword() << " ";
             File << item.getEmail() << " ";
@@ -58,5 +58,5 @@ bool CasualFile::update(Account *account) {
 }
 
 bool CasualFile::conditionToRemove(Account *account, Account *helpAccount) {
-    return account->getID() == helpAccount->getID();
+    return account->getHashcode() == helpAccount->getHashcode();
 }

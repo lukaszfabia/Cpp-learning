@@ -1,7 +1,3 @@
-//
-// Created by ufabi on 27.08.2023.
-//
-
 #include <vector>
 #include <algorithm>
 #include "headers/Processes/RegistrationProcess.h"
@@ -25,7 +21,7 @@ bool RegistrationProcess::equals(Account account) {
 
 bool RegistrationProcess::addNewAccount() {
     if (accounts.empty() || isUnique()) {
-        addUniqueID();
+        registration->setHashcode();
         auto *account=new Account(registration);
         accounts.push_back(*account);
         return saveData();
@@ -48,16 +44,3 @@ bool RegistrationProcess::saveData() {
     delete file;
     return resultTxt;
 }
-
-bool RegistrationProcess::addUniqueID() {
-    int id=1;
-    for (auto &account : accounts){
-        if (account.getID()==registration->getID()){
-            registration->setID(id);
-            return true;
-        }
-        id++;
-    }
-    return false;
-}
-

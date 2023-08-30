@@ -13,12 +13,11 @@ int MainMenu::getChoice() {
 void MainMenu::welcomeMessage() {
     ConsoleControl::clearConsole();
     ReadInput::print("Welcome " + actualAccount->getUsername() + "!\n");
-    ReadInput::print("1. Show my information\n");
-    ReadInput::print("2. Edit my information\n");
-    ReadInput::print("3. Logout\n");
-
     int choice = 0;
     while (choice != 3) {
+        ReadInput::print("1. Show my information\n");
+        ReadInput::print("2. Edit my information\n");
+        ReadInput::print("3. Logout\n");
         ReadInput::print("Enter your choice: ");
         choice = getChoice();
         menu(choice);
@@ -28,6 +27,7 @@ void MainMenu::welcomeMessage() {
 void MainMenu::menu(int choice) {
     switch (choice) {
         case 1:
+            ConsoleControl::clearConsole();
             ReadInput::print(actualAccount->information());
             break;
         case 2:

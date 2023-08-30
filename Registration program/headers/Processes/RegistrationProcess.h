@@ -22,8 +22,6 @@ private:
 
     bool saveData();
 
-    bool addUniqueID();
-
 public:
     explicit RegistrationProcess(vector<Account> &accounts, Registration *registration) : Process(accounts),
     registration(registration) {};

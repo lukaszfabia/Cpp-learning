@@ -4,7 +4,7 @@
 
 void LoginMenu::showPrompts() {
     std::string username, password;
-    ReadInput::print("Enter username: ");
+    ReadInput::print("Login\nEnter username: ");
     username = getData();
     ReadInput::print("Enter password: ");
     password = getData();
@@ -35,7 +35,7 @@ void LoginMenu::setAccount(const std::string &username, const std::string &passw
         if (item.getUsername() == username && item.getPassword() == password) {
             auto *account = new Account(item.getUsername(), item.getPassword(),
                                         item.getEmail(), item.getPhoneNumber(), item.getNationality(),
-                                        item.getBalance(), item.getID());
+                                        item.getBalance(), item.getHashcode());
             this->loggedAccount = account;
             this->process = new LoginProcess(accounts, loggedAccount);
             this->mainMenu = new MainMenu(accounts, loggedAccount);

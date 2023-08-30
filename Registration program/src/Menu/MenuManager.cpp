@@ -63,7 +63,7 @@ int MenuManager::getChoice() {
 }
 
 void MenuManager::showPrompts() {
-    ConsoleControl::sleep(2);
+    ConsoleControl::sleep(1);
     ConsoleControl::clearConsole();
     ReadInput::print("1. Register\n");
     ReadInput::print("2. Login\n");

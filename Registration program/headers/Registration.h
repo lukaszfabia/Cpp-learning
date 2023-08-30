@@ -12,7 +12,7 @@ private:
     string password;
     string email;
     string phoneNumber;
-    int id;
+    size_t hashcode{};
 
 protected:
     Validator validator;
@@ -30,11 +30,11 @@ public:
 
     string getPassword();
 
+    [[nodiscard]] size_t getHashcode() const;
+
     bool authorize();
 
-    void setID(int new_id);
-
-    int getID() const;
+    void setHashcode();
 };
 
 #endif

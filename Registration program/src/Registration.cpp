@@ -10,7 +10,6 @@ Registration::Registration(const string &username, const string &password, const
     this->email = email;
     this->phoneNumber = phoneNumber;
     this->validator = Validator(username, password, email, phoneNumber);
-    this->id=0;
 }
 
 Registration::~Registration()
@@ -36,10 +35,10 @@ bool Registration::authorize() {
     return !validator.isValid();
 }
 
-int Registration::getID() const {
-    return this->id;
+void Registration::setHashcode() {
+    this->hashcode = std::hash<std::string>{}(this->username + this->password + this->email + this->phoneNumber);
 }
 
-void Registration::setID(int new_id) {
-    this->id = new_id;
+size_t Registration::getHashcode() const {
+    return this->hashcode;
 }
