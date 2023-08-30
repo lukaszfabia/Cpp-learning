@@ -1,5 +1,4 @@
 #include "headers/Account.h"
-#include "headers/Tools/System and control/ReadInput.h"
 #include <string>
 #include <utility>
 
@@ -60,11 +59,31 @@ void Account::setBalance(double money) {
     this->balance = money;
 }
 
-void Account::setNationality() {
-    ReadInput::print("Enter new nationality: ");
-    this->nationality = ReadInput::readString(1);
-}
-
 void Account::setNationality(std::string newNationality) {
     this->nationality = std::move(newNationality);
+}
+
+std::string Account::information() {
+    return "\nUsername: " + getUsername() +
+           "\nEmail: " + getEmail() +
+           "\nPhone number: " + getPhoneNumber() +
+           "\nNationality: " + getNationality() +
+           "\nBalance: " + to_string(getBalance()) +
+           "\n";
+}
+
+void Account::setUsername(std::string newUsername) {
+    this->username = std::move(newUsername);
+}
+
+void Account::setPassword(std::string newPassword) {
+    this->password = std::move(newPassword);
+}
+
+void Account::setEmail(std::string newMail) {
+    this->email = std::move(newMail);
+}
+
+void Account::setPhoneNumber(std::string newPhoneNumber) {
+    this->phoneNumber = std::move(newPhoneNumber);
 }

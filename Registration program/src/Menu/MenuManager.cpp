@@ -37,9 +37,8 @@ void MenuManager::buildLoginMenu() {
 void MenuManager::build() {
     updateDataBase();
 
-    bool isRunning = false;
-    int choice;
-    while (!isRunning) {
+    int choice=0;
+    while (choice!=3) {
         showPrompts();
         choice = getChoice();
         ConsoleControl::clearConsole();
@@ -51,7 +50,6 @@ void MenuManager::build() {
                 buildLoginMenu();
                 break;
             case 3:
-                isRunning = true;
                 break;
             default:
                 ReadInput::print("Invalid choice!\n");

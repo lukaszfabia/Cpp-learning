@@ -32,5 +32,7 @@ add_executable(cpp_learning
         src/Menu/LoginMenu.cpp
         headers/Menu/LoginMenu.h
         "headers/Tools/System and control/ConsoleControl.h"
-        "src/Tools/System and control/ConsoleControl.cpp" "src/Tools/System and control/ReadInput.cpp" "src/Tools/System and control/Validator.cpp")
+        "src/Tools/System and control/ConsoleControl.cpp" "src/Tools/System and control/ReadInput.cpp" "src/Tools/System and control/Validator.cpp"
+        src/Menu/EditInformation.cpp
+        headers/Menu/EditInformation.h)
 

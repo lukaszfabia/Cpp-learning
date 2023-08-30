@@ -85,3 +85,19 @@ bool Validator::isEmailValid() {
 bool Validator::isPhoneNumberValid() {
     return !(hasOnlyNumbers(phoneNumber) && hasProperLength(phoneNumber, 8, 10));
 }
+
+bool Validator::isUsernameValid(const string& new_username) {
+    return !(hasProperLength(new_username, 5, 40) && hasBigLetter(new_username) && hasOnlyLettersAndNumbers(new_username));
+}
+
+bool Validator::isPasswordValid(const string& new_password) {
+    return !(hasProperLength(new_password, 8, 40) && hasBigLetter(new_password) && hasSpecialCharacter(new_password));
+}
+
+bool Validator::isEmailValid(const string& new_mail) {
+    return !(isProperEmail(new_mail) && hasProperLength(new_mail, 5, 40));
+}
+
+bool Validator::isPhoneNumberValid(const string& new_phone_number) {
+    return !(hasOnlyNumbers(new_phone_number) && hasProperLength(new_phone_number, 8, 10));
+}

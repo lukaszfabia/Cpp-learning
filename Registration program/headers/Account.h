@@ -41,7 +41,18 @@ public:
     void setBalance(double money);
 
     void setNationality();
+
     void setNationality(string newNationality);
+
+    void setUsername(string newUsername);
+
+    void setPassword(string newPassword);
+
+    void setPhoneNumber(string newPhoneNumber);
+
+    void setEmail(string newMail);
+
+    string information();
 };
 
 #endif

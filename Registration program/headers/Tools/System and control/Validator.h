@@ -40,6 +40,14 @@ public:
     ~Validator();
 
     bool isValid();
+
+    bool isUsernameValid(const string& new_username);
+
+    bool isPasswordValid(const string& new_password);
+
+    bool isEmailValid(const string& new_email);
+
+    bool isPhoneNumberValid(const string& new_phone_number);
 };
 
 #endif

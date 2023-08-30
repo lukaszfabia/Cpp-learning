@@ -5,15 +5,16 @@
 #include "Menu.h"
 #include "headers/Tools/File/File.h"
 #include "headers/Tools/File/CasualFile.h"
+#include "EditInformation.h"
 #include <vector>
 
 class MainMenu {
 private:
     Account *actualAccount;
     vector<Account> &accounts;
-    File *file;
+    EditInformation *edit;
 
-    void showPrompts();
+    void welcomeMessage();
 
     static int getChoice();
 
@@ -21,15 +22,17 @@ private:
 public:
     explicit MainMenu(vector<Account> &accounts, Account *account) : accounts(accounts) {
         this->actualAccount = account;
-        this->file = new CasualFile(accounts, "data");
+        this->edit = new EditInformation(account, accounts);
     };
 
     ~MainMenu() {
         delete actualAccount;
-        delete file;
+        delete edit;
     };
 
     void buildMenu();
+
+    void menu(int choice);
 };
 
 
